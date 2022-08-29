@@ -5,7 +5,7 @@ import java.util.Observable;
 
 
 /** The state of a game of 2048.
- *  @author Evelyn Ho
+ *  @author TODO: YOUR NAME HERE
  */
 public class Model extends Observable {
     /** Current contents of the board. */
@@ -116,20 +116,6 @@ public class Model extends Observable {
      *    and the trailing tile does not.
      */
     public void tilt(Side side) {
-        int s= Board.size();
-
-        for (int x=0; x<s; x+=1){
-            for (int y=0; y<s; y+=1) {
-                Tile t=Board.tile(x,y);
-                if (side==Side.NORTH)
-                {Board.move(1,1,t);}
-                if (Board.move(1,1,t))
-                {}
-
-
-
-            }}
-
         // TODO: Fill in this function.
 
         checkGameOver();
@@ -151,15 +137,6 @@ public class Model extends Observable {
      *  Empty spaces are stored as null.
      */
     public static boolean emptySpaceExists(Board b) {
-        int s= b.size();
-
-
-       for (int x=0; x<s; x+=1){
-           for (int y=0; y<s; y+=1) {
-               if (b.tile(x, y) == null)
-                   return true;
-
-           }}
         // TODO: Fill in this function.
         return false;
     }
@@ -170,15 +147,7 @@ public class Model extends Observable {
      * given a Tile object t, we get its value with t.value().
      */
     public static boolean maxTileExists(Board b) {
-
-        int s= b.size();
-        for (int x=0; x<s; x+=1){
-            for (int y=0; y<s; y+=1) {
-                if (b.tile(x, y)!=null && b.tile(x, y).value()==MAX_PIECE) {
-                    return true;
-                }
-                // TODO: Fill in this function.
-            }}
+        // TODO: Fill in this function.
         return false;
     }
 
@@ -190,19 +159,6 @@ public class Model extends Observable {
      */
     public static boolean atLeastOneMoveExists(Board b) {
         // TODO: Fill in this function.
-                if (Model.emptySpaceExists(b))
-                {return true;}
-                int s= b.size();
-                s-=1;
-                for (int x=0; x<s; x+=1){
-                    for (int y=0; y<s; y+=1) {
-                        if (b.tile(x, y).value() == b.tile(x, (y + 1)).value() || b.tile(x, y).value() == b.tile((x + 1), y).value())
-                        { return true;}
-                        if (b.tile((x+1), y).value() == b.tile((x + 1),(y+1)).value() || b.tile(x, (y+1)).value() == b.tile((x + 1),(y+1)).value())
-                        { return true;}
-
-                    }}
-
         return false;
     }
 
