@@ -101,4 +101,6 @@ public class TestUpOnly extends TestUtils {
         model.tilt(Side.NORTH);
         checkModel(after, 4, 0, prevBoard, Side.NORTH);
     }
+
+
 }
