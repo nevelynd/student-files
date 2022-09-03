@@ -121,11 +121,11 @@ public class Model extends Observable {
         if (side!=Side.NORTH){
             _board.setViewingPerspective(side);
         }
-        for (int x=s; x>=0; x-=1){
-            boolean mrg=false;
+        for (int x=s; x>=0; x-=1){ //go through each column
+            boolean mrg=false; // checks to see if merge has occurred
             int count=0;
-            for (int y=(s-1); y>=0;y-=1){
-                int temp = s;
+            for (int y=(s-1); y>=0;y-=1){ //go through each row
+                int temp = s; //variable to see where to move tile
                 if (mrg){temp-=1;
                     if (count>1){mrg=false;
                     count=0;}
@@ -137,12 +137,12 @@ public class Model extends Observable {
 
                     int tv = t.value();
 
-                    while (_board.tile(x, temp) != null && temp > y && _board.tile(x, temp).value() != tv) {
+                    while (_board.tile(x, temp) != null && temp > y &&(_board.tile(x, temp).value() != tv
+                            ||(temp-1)>y&&_board.tile(x, temp-1) != null &&_board.tile(x, temp-1).value() != tv) ){
                         temp -= 1;}
 
-
                     if ((mrg==false||count<2)&&_board.tile(x, temp) != null && _board.tile(x, temp).value() == tv&&temp!=y) {
-                       
+
                         _score += (2*tv);
                         mrg=true;
                     count+=1;}
