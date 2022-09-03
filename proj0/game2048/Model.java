@@ -123,35 +123,66 @@ public class Model extends Observable {
         }
         for (int x=s; x>=0; x-=1){
             boolean mrg=false;
+            int count=0;
             for (int y=(s-1); y>=0;y-=1){
-                Tile  t = tile(x,y);
+                int temp = s;
+                if (mrg){temp-=1;
+                    if (count>1){mrg=false;
+                    count=0;}
+                }
 
-                int temp=s;
-                if (t !=null){
-                    int  tv = tile(x,y).value();
+                Tile  t = _board.tile(x,y);
+                if (t !=null) {
 
 
-                    while ( tile(x,temp)!=null && temp>y  && tile(x,temp).value()!=tv ||tile(x,temp)!=null && temp>y  && mrg )
-                    {temp-=1;}
+                    int tv = t.value();
+
+                    while (_board.tile(x, temp) != null && temp > y && _board.tile(x, temp).value() != tv) {
+                        temp -= 1;}
 
 
-                    if (mrg==false&&tile(x,temp)!=null &&tile(x,temp).value()==tv){
-                        _score+=(2*tv);
-                        mrg=true;}
+                    if ((mrg==false||count<2)&&_board.tile(x, temp) != null && _board.tile(x, temp).value() == tv&&temp!=y) {
+                       
+                        _score += (2*tv);
+                        mrg=true;
+                    count+=1;}
+
 
                     {
+
                         _board.move(x, temp, t);
 
                     }
-
-
-
         }}}
         {_board.setViewingPerspective(Side.NORTH);}
         // TODO: Fill in this function.
 
         checkGameOver();
     }
+
+
+
+    /**private int helper(Tile t, int x, int y, int s) {
+        int temp = s;
+        boolean mrg=false;
+
+            int tv = t.value();
+
+            while (_board.tile(x, temp) != null && temp > y && _board.tile(x, temp).value() != tv) {
+                temp -= 1;}
+        if (_board.tile(x, temp) != null && _board.tile(x, temp).value() == tv) {
+            _score += (2*tv);}
+            //mrg=true;
+
+
+
+
+
+
+
+
+
+          return temp; }*/
 
     /** Checks if the game is over and sets the gameOver variable
      *  appropriately.
