@@ -42,6 +42,7 @@ public class TimeSLList {
             test.getLast();
             double time =sw.elapsedTime();
             times.addLast(time);
+            test=;
         }
 
 
