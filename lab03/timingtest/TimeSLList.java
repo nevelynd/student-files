@@ -27,12 +27,12 @@ public class TimeSLList {
         AList ns= new AList<Integer>();
         AList times= new AList<Double>();
         AList opcounts= new AList<Integer>();
-        int i=0;
+        int j=0;
         int l=0;
-       ;while (i<=1000*(2^l)) {
+       ;while (j<=1000*(2^l)) {
         test.addLast(i);
         }
-        i=0;
+       
         while (l<=7){
             Stopwatch sw= new Stopwatch();
 
