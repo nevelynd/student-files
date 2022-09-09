@@ -29,17 +29,19 @@ public class TimeAList {
         AList times= new AList<Double>();
         AList opcounts= new AList<Integer>();
         while (l<=7){
-        while (i<=1000*(2^l)) {
             Stopwatch sw= new Stopwatch();
+        while (i<=1000*(2^l)) {
+
 
             test.addLast(i);
-            double time =sw.elapsedTime();
-            times.addLast(time);
+
 
 
 
             i+=1;
         }
+            double time =sw.elapsedTime();
+            times.addLast(time);
             ns.addLast(1000*(2^l));
 
             opcounts.addLast(1000*(2^l));

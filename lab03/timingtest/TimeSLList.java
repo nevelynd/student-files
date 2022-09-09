@@ -27,26 +27,31 @@ public class TimeSLList {
         AList ns= new AList<Integer>();
         AList times= new AList<Double>();
         AList opcounts= new AList<Integer>();
-        while (i<=7) {
-            test.addLast(1000*(2^i));
-
-            ns.addLast(1000*(2^i));
-
-            opcounts.addLast(10000);
-
-            i+=1;
+        int i=0;
+        int l=0;
+       ;while (i<=1000*(2^l)) {
+        test.addLast(i);
         }
-        while (test!=null){
+        i=0;
+        while (l<=7){
             Stopwatch sw= new Stopwatch();
 
-            test.getLast();
+
+
+                test.getLast();
+
+
+
             double time =sw.elapsedTime();
             times.addLast(time);
-            //test=;
+            ns.addLast(1000*(2^l));
+
+            opcounts.addLast(10000);
+            l+=1;
         }
 
-
         printTimingTable(ns, times, opcounts);
+
 
 
         // TODO: YOUR CODE HERE
