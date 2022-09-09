@@ -41,27 +41,33 @@ public class TestBuggyAList {
 
         } else if (operationNumber == 1) {
             // size
-            int size = c.size();
-            int sizeb= b.size();
+            c.size();
+            b.size();
 
 
         } else if (operationNumber == 2 && c.size()!=0 || b.size()!=0) {
             // get Last
 
-            int gl= c.getLast();
-            int glb= b.getLast();
-
-
+            c.getLast();
+            b.getLast();
 
             }
+        else if (operationNumber == 3 && c.size()!=0 || b.size()!=0) {
+            // get Last
+
+            c.removeLast();
+            b.removeLast();
+
+
+
+        }
         }
 
 
-    //assertEquals(c.size(), b.size());
-    //assertEquals(c.addLast(), b.addLast());
+    assertEquals(c.size(), b.size());
+    assertEquals(c.getLast(), b.getLast());
 
-    //assertEquals(c.getLast(), b.getLast());
-    //assertEquals(c.removeLast(), b.removeLast());
+    assertEquals(c.removeLast(), b.removeLast());
     }
 
   // YOUR TESTS HERE
