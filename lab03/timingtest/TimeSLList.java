@@ -22,18 +22,19 @@ public class TimeSLList {
     }
 
     public static void timeGetLast() {
-        int i=0;
         SLList test= new SLList<Integer>();
         AList ns= new AList<Integer>();
         AList times= new AList<Double>();
         AList opcounts= new AList<Integer>();
         int j=0;
         int l=0;
-       ;while (j<=1000*(2^l)) {
-        test.addLast(i);
-        }
-       
+
+
         while (l<=7){
+            while (j<=1000*(2^l)) {
+                test.addLast(j);
+                j+=1;
+            }
             Stopwatch sw= new Stopwatch();
 
 

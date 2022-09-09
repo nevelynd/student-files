@@ -30,16 +30,16 @@ public class TimeAList {
         AList opcounts= new AList<Integer>();
         while (l<=7){
             Stopwatch sw= new Stopwatch();
-        while (i<=1000*(2^l)) {
+            while (i<=1000*(2^l)) {
 
 
-            test.addLast(i);
+                test.addLast(i);
 
 
 
 
-            i+=1;
-        }
+                i+=1;
+            }
             double time =sw.elapsedTime();
             times.addLast(time);
             ns.addLast(1000*(2^l));
