@@ -31,6 +31,7 @@ public class BuggyAList<Item> {
             a[i] = items[i];
         }
         items = a;
+        items[size]=null;
     }
 
     /** Inserts X into the back of the list. */
