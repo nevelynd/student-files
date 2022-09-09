@@ -43,6 +43,7 @@ public class TimeAList {
             ns.addLast(1000*(2^l));
 
             opcounts.addLast(1000*(2^l));
+            l+=1;
         }
 
         printTimingTable(ns, times, opcounts);
