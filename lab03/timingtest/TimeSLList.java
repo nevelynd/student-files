@@ -26,6 +26,7 @@ public class TimeSLList {
 
         int i=0;
         int n=1000;
+        int m=0;
         SLList test= new SLList<Integer>();
         AList ns= new AList<Integer>();
         AList times= new AList<Double>();
@@ -35,12 +36,16 @@ public class TimeSLList {
             while (i<=n) {
                 test.addLast(i);
                 i+=1;}
+
             Stopwatch sw= new Stopwatch();
+            while (m<=10000){
             test.getLast();
+            m+=1;}
             double time =sw.elapsedTime();
             times.addLast(time);
             ns.addLast(n);
-
+            i=0;
+            m=0;
             opcounts.addLast(10000);
             n=2*n;
             test= new SLList<Integer>();

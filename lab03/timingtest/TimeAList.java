@@ -34,9 +34,10 @@ public class TimeAList {
                 test.addLast(i);
                 i+=1;}
             double time =sw.elapsedTime();
+
             times.addLast(time);
             ns.addLast(n);
-
+            i=0;
             opcounts.addLast(n);
             n=2*n;
             test= new AList<Integer>();
