@@ -5,32 +5,40 @@ import java.util.LinkedList;
 public class LinkedListDeque<T> {
     private class IntNode {
         public T item;
+        public IntNode prev;
         public IntNode next;
 
 
-    public IntNode (T i, IntNode n){
+    public IntNode (IntNode p,T i, IntNode n){
         item= i;
         next= n;
+        prev= p;
     }
 }
     private int size;
     private IntNode sentfront;
 
-
     public LinkedListDeque (){
         size=0;
-        sentfront= new IntNode(null, sentfront);
+
+
+        sentfront= new IntNode(null, null, null);
 
     }
 
     public void addFirst(T item){
         size+=1;
-        sentfront= new IntNode(item, sentfront.next);
+        if (sentfront.next!=null){
+        sentfront= sentfront.next;}
+        sentfront= new IntNode(sentfront.prev, item,  sentfront);
     }
 
 
     public void addLast(T item) {
-        sentfront.next= new IntNode(item, sentfront.next);
+        sentfront.next=sentfront.prev;
+        if (sentfront!=null){
+        sentfront.prev= sentfront;}
+        sentfront=new IntNode(sentfront.prev,item,sentfront.next);
         size+=1;
 
 
@@ -47,7 +55,8 @@ public class LinkedListDeque<T> {
     }
     public void printDeque(){
         String res="";
-        while (sentfront.next.item!=sentfront.item){
+        if (size==0) {res=" ";}
+        while (size!=0 && sentfront!=null){
             res+=sentfront.item+ " ";
             sentfront=sentfront.next;
         }
@@ -57,12 +66,18 @@ public class LinkedListDeque<T> {
     }
 
     public T removeFirst(){
-    sentfront=sentfront.next;
-    if (sentfront.item!=null) {return sentfront.item;}
-        {return null;}
+        if (size==0) {return null;}
+        size-=1;
+        T res=sentfront.item;
+        sentfront=sentfront.next;
+
+    {return res;}
+
     }
-    public T removeLast(){    sentfront=sentfront.next;
-        if (sentfront.item!=null) {return sentfront.item;}
+    public T removeLast(){
+        if (size==0) {return null;}
+        size-=1;
+        sentfront=sentfront.next;
         {return null;}
     }
     public T get(int index){
