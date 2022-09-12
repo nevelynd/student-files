@@ -1,4 +1,4 @@
-package deque.LinkedListDeque.java;
+package deque;
 
 import java.util.LinkedList;
 
