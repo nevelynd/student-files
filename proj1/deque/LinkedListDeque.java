@@ -23,7 +23,8 @@ public class LinkedListDeque<T> {
             temp.prev = sentfront.next; }
 
         else {
-            sentfront.next = new IntNode(sentfront, item, sentfront); }
+            sentfront.next = new IntNode(sentfront, item, sentfront);
+            sentfront.prev = sentfront.next; }
         size += 1;
     }
     //stylecheck after
@@ -57,9 +58,9 @@ public class LinkedListDeque<T> {
         }
             System.out.println(res);
     }
-    public T removeFirst(){
-        if (size==0||sentfront.next==null){return null;}
-        else{
+    public T removeFirst() {
+        if (size == 0 || sentfront.next == null) {return null;}
+        else {
 
             size-=1;
             T res=sentfront.next.item;
@@ -68,15 +69,19 @@ public class LinkedListDeque<T> {
             return res;
         }
     }
-    public T removeLast(){
-        if (size==0||sentfront.prev==null){return null;}
+    public T removeLast() {
+        if (size ==0 || sentfront.prev == null) { return null;}
         else{
-            size-=1;
-            sentfront.prev=sentfront.prev.prev;
-            return null;
+            size -= 1;
+            IntNode oldback = sentfront.prev;
+            IntNode newback = oldback.prev;
+
+            sentfront.prev=newback;
+            newback.next=sentfront;
+            return oldback.item;
         }
     }
-    public T get(int index){
+    public T get(int index) {
         T ans;
         while(index<=size&&index!=0){
             ans=sentfront.item;
