@@ -1,126 +1,95 @@
 package deque;
-
-import java.util.LinkedList;
-
 public class LinkedListDeque<T> {
-    private class IntNode {
+    public class IntNode{
         public T item;
         public IntNode prev;
         public IntNode next;
-
-
-    public IntNode (IntNode p,T i, IntNode n){
-        item= i;
-        next= n;
-        prev= p;
+    public IntNode(IntNode p,T i, IntNode n){
+        item=i;
+        next=n;
+        prev=p;
     }
 }
-    private int size;
-    private IntNode sentfront;
-
-    public LinkedListDeque (){
+    public int size;
+    public IntNode sentfront;
+    public LinkedListDeque(){
         size=0;
-
-
-        sentfront= new IntNode(null, null, null);
-
-    }
-    public LinkedListDeque (T i){
-        size=1;
-
-
-        sentfront= new IntNode(null, null, null);
-        sentfront.next= new IntNode(null, i, null);
-
+        sentfront= new IntNode(null,null,null);
     }
     public void addFirst(T item){
-        if (sentfront.next!=null) {
-            IntNode temp= sentfront.next;
+        if (sentfront.next!=null){
+            IntNode temp=sentfront.next;
             sentfront.next=new IntNode(sentfront,item,sentfront.next);
             temp.prev=sentfront.next;}
 
-       else{ sentfront.next= new IntNode(sentfront, item,  sentfront);}
+        else{sentfront.next=new IntNode(sentfront,item,sentfront);}
         size+=1;
 
     }
-
-
-    public void addLast(T item) {
-        if (sentfront.prev!=null) {
-            IntNode temp= sentfront.prev;
-        sentfront.prev=new IntNode(sentfront.prev,item,sentfront);
-        temp.next=sentfront.prev;
-
+    public void addLast(T item){
+        if(sentfront.prev!=null){
+            IntNode temp=sentfront.prev;
+            sentfront.prev=new IntNode(sentfront.prev,item,sentfront);
+            temp.next=sentfront.prev;
         }
-        else {
-            sentfront.prev = new IntNode(sentfront, item, sentfront.prev);
-
-        }        size+=1;
-
-
+        else{
+            sentfront.prev=new IntNode(sentfront,item,sentfront.prev);
+        }
+        size+=1;
     }
-
     public boolean isEmpty(){
-        if (size==0) {return true;}
-        else {return false;}
-
+        if(size==0){return true;}
+        else{return false;}
     }
-
     public int size(){
         return size;
     }
     public void printDeque(){
         int count=size;
         String res="";
-        if (size==0) {res=" ";}
-        //sentfront=sentfront.next;
-        while (size!=0 && count>=0&& sentfront.item!=null ){
+        if(size==0){res=" ";}
+        while(size!=0&&count>=0&&sentfront.item!=null){
             res+=sentfront.item+ " ";
             sentfront=sentfront.next;
             count-=1;
         }
             System.out.println(res);
-
-
     }
-
     public T removeFirst(){
-        if (size==0 ||sentfront.next==null) {return null;}
-        else{size-=1;
-        T res=sentfront.next.item;
-        sentfront=sentfront.next;
-
-    return res;}
-
+        if (size==0||sentfront.next==null){return null;}
+        else{
+            size-=1;
+            T res=sentfront.next.item;
+            sentfront=sentfront.next;
+            return res;
+        }
     }
     public T removeLast(){
-        if (size==0 ||sentfront.prev==null) {return null;}
-        else{size-=1;
-        sentfront.prev=sentfront.prev.prev;
-        return null;}
+        if (size==0||sentfront.prev==null){return null;}
+        else{
+            size-=1;
+            sentfront.prev=sentfront.prev.prev;
+            return null;
+        }
     }
     public T get(int index){
         T ans;
-        while (index<=size && index!=0) {
+        while(index<=size&&index!=0){
             ans=sentfront.item;
             sentfront=sentfront.next;
             index-=1;
         }
         return null;
-        }
-
-
+    }
     public T getRecursive(int index){
         T ans;
-        if (index<=size || index!=0){return null;}
+        if(index<=size||index!=0){return null;}
         ans=sentfront.item;
         sentfront=sentfront.next;
         index-=1;
-
         return getRecursive(index);
     }
-
-    }
+}
 
 
 
