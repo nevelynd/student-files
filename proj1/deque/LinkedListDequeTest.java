@@ -25,11 +25,12 @@ public class LinkedListDequeTest {
         assertEquals(1, lld1.size());
         assertFalse("lld1 should now contain 1 item", lld1.isEmpty());
 
-		lld1.addLast("middle");
-		assertEquals(2, lld1.size());
+       lld1.addLast("middle");
+        assertEquals(2, lld1.size());
 
-		lld1.addLast("back");
-		assertEquals(3, lld1.size());
+        lld1.addLast("back");
+        assertEquals(3, lld1.size());
+
 
 		System.out.println("Printing out deque: ");
 		lld1.printDeque();
@@ -122,6 +123,8 @@ public class LinkedListDequeTest {
         }
 
         for (double i = 0; i < 5; i++) {
+
+
             assertEquals("Should have the same value", i, (double) lld1.removeFirst(), 0.0);
         }
 

@@ -25,21 +25,37 @@ public class LinkedListDeque<T> {
         sentfront= new IntNode(null, null, null);
 
     }
+    public LinkedListDeque (T i){
+        size=1;
 
+
+        sentfront= new IntNode(null, null, null);
+        sentfront.next= new IntNode(null, i, null);
+
+    }
     public void addFirst(T item){
+        if (sentfront.next!=null) {
+            IntNode temp= sentfront.next;
+            sentfront.next=new IntNode(sentfront,item,sentfront.next);
+            temp.prev=sentfront.next;}
+
+       else{ sentfront.next= new IntNode(sentfront, item,  sentfront);}
         size+=1;
-        if (sentfront.next!=null){
-        sentfront= sentfront.next;}
-        sentfront= new IntNode(sentfront.prev, item,  sentfront);
+
     }
 
 
     public void addLast(T item) {
-        sentfront.next=sentfront.prev;
-        if (sentfront!=null){
-        sentfront.prev= sentfront;}
-        sentfront=new IntNode(sentfront.prev,item,sentfront.next);
-        size+=1;
+        if (sentfront.prev!=null) {
+            IntNode temp= sentfront.prev;
+        sentfront.prev=new IntNode(sentfront.prev,item,sentfront);
+        temp.next=sentfront.prev;
+
+        }
+        else {
+            sentfront.prev = new IntNode(sentfront, item, sentfront.prev);
+
+        }        size+=1;
 
 
     }
@@ -54,11 +70,14 @@ public class LinkedListDeque<T> {
         return size;
     }
     public void printDeque(){
+        int count=size;
         String res="";
         if (size==0) {res=" ";}
-        while (size!=0 && sentfront!=null){
+        //sentfront=sentfront.next;
+        while (size!=0 && count>=0&& sentfront.item!=null ){
             res+=sentfront.item+ " ";
             sentfront=sentfront.next;
+            count-=1;
         }
             System.out.println(res);
 
@@ -66,19 +85,19 @@ public class LinkedListDeque<T> {
     }
 
     public T removeFirst(){
-        if (size==0) {return null;}
-        size-=1;
-        T res=sentfront.item;
+        if (size==0 ||sentfront.next==null) {return null;}
+        else{size-=1;
+        T res=sentfront.next.item;
         sentfront=sentfront.next;
 
-    {return res;}
+    return res;}
 
     }
     public T removeLast(){
-        if (size==0) {return null;}
-        size-=1;
-        sentfront=sentfront.next;
-        {return null;}
+        if (size==0 ||sentfront.prev==null) {return null;}
+        else{size-=1;
+        sentfront.prev=sentfront.prev.prev;
+        return null;}
     }
     public T get(int index){
         T ans;
@@ -89,11 +108,7 @@ public class LinkedListDeque<T> {
         }
         return null;
         }
-    public boolean equals(Object o){
-        if (o=="e")
-        {return true;}
-        return false;
-    }
+
 
     public T getRecursive(int index){
         T ans;
