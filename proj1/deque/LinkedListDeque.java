@@ -1,31 +1,32 @@
 package deque;
 public class LinkedListDeque<T> {
-    public class IntNode{
-        public T item;
-        public IntNode prev;
-        public IntNode next;
-    public IntNode(IntNode p,T i, IntNode n){
-        item=i;
-        next=n;
-        prev=p;
+    public class IntNode {
+        private T item;
+        private IntNode prev;
+        private IntNode next;
+        public IntNode(IntNode p, T i, IntNode n) {
+            item = i;
+            next = n;
+            prev = p;
+        }
     }
-}
-    public int size;
-    public IntNode sentfront;
-    public LinkedListDeque(){
-        size=0;
-        sentfront= new IntNode(null,null,null);
+    private int size;
+    private IntNode sentfront;
+    public LinkedListDeque() {
+        size = 0;
+        sentfront = new IntNode(null, null, null);
     }
-    public void addFirst(T item){
-        if (sentfront.next!=null){
-            IntNode temp=sentfront.next;
-            sentfront.next=new IntNode(sentfront,item,sentfront.next);
-            temp.prev=sentfront.next;}
+    public void addFirst(T item) {
+        if (sentfront.next != null) {
+            IntNode temp = sentfront.next;
+            sentfront.next = new IntNode(sentfront, item, sentfront.next);
+            temp.prev = sentfront.next; }
 
-        else{sentfront.next=new IntNode(sentfront,item,sentfront);}
-        size+=1;
-
+        else {
+            sentfront.next = new IntNode(sentfront, item, sentfront); }
+        size += 1;
     }
+    //stylecheck after
     public void addLast(T item){
         if(sentfront.prev!=null){
             IntNode temp=sentfront.prev;
@@ -34,6 +35,7 @@ public class LinkedListDeque<T> {
         }
         else{
             sentfront.prev=new IntNode(sentfront,item,sentfront.prev);
+            sentfront.next=sentfront.prev;
         }
         size+=1;
     }
@@ -58,9 +60,11 @@ public class LinkedListDeque<T> {
     public T removeFirst(){
         if (size==0||sentfront.next==null){return null;}
         else{
+
             size-=1;
             T res=sentfront.next.item;
-            sentfront=sentfront.next;
+            sentfront.next=sentfront.next.next;
+            sentfront.next.prev=sentfront;
             return res;
         }
     }
