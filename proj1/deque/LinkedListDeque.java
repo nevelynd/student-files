@@ -11,32 +11,31 @@ public class LinkedListDeque<T> {
         }
     }
     private int size;
-    private IntNode sentfront;
+    private IntNode sentinel;
     public LinkedListDeque() {
         size = 0;
-        sentfront = new IntNode(null, null, null);
+        sentinel = new IntNode(null, null, null);
     }
     public void addFirst(T item) {
-        if (sentfront.next != null) {
-            IntNode temp = sentfront.next;
-            sentfront.next = new IntNode(sentfront, item, sentfront.next);
-            temp.prev = sentfront.next; }
+        if (sentinel.next != null) {
+            IntNode temp = sentinel.next;
+            sentinel.next = new IntNode(sentinel, item, sentinel.next);
+            temp.prev = sentinel.next; }
 
         else {
-            sentfront.next = new IntNode(sentfront, item, sentfront);
-            sentfront.prev = sentfront.next; }
+            sentinel.next = new IntNode(sentinel, item, sentinel);
+            sentinel.prev = sentinel.next; }
         size += 1;
     }
-    //stylecheck after
     public void addLast(T item){
-        if(sentfront.prev!=null){
-            IntNode temp=sentfront.prev;
-            sentfront.prev=new IntNode(sentfront.prev,item,sentfront);
-            temp.next=sentfront.prev;
+        if(sentinel.prev!=null){
+            IntNode temp=sentinel.prev;
+            sentinel.prev=new IntNode(sentinel.prev,item,sentinel);
+            temp.next=sentinel.prev;
         }
         else{
-            sentfront.prev=new IntNode(sentfront,item,sentfront.prev);
-            sentfront.next=sentfront.prev;
+            sentinel.prev=new IntNode(sentinel,item,sentinel.prev);
+            sentinel.next=sentinel.prev;
         }
         size+=1;
     }
@@ -51,51 +50,52 @@ public class LinkedListDeque<T> {
         int count=size;
         String res="";
         if(size==0){res=" ";}
-        while(size!=0&&count>=0&&sentfront.item!=null){
-            res+=sentfront.item+ " ";
-            sentfront=sentfront.next;
+        while(size!=0&&count>=0&&sentinel.item!=null){
+            res+=sentinel.item+ " ";
+            sentinel=sentinel.next;
             count-=1;
         }
             System.out.println(res);
     }
     public T removeFirst() {
-        if (size == 0 || sentfront.next == null) {return null;}
+        if (size == 0 || sentinel.next == null) {return null;}
         else {
 
             size-=1;
-            T res=sentfront.next.item;
-            sentfront.next=sentfront.next.next;
-            sentfront.next.prev=sentfront;
+            T res=sentinel.next.item;
+            sentinel.next=sentinel.next.next;
+            sentinel.next.prev=sentinel;
             return res;
         }
     }
     public T removeLast() {
-        if (size ==0 || sentfront.prev == null) { return null;}
+        if (size ==0 || sentinel.prev == null) { return null;}
         else{
             size -= 1;
-            IntNode oldback = sentfront.prev;
+            IntNode oldback = sentinel.prev;
             IntNode newback = oldback.prev;
 
-            sentfront.prev=newback;
-            newback.next=sentfront;
+            sentinel.prev=newback;
+            newback.next=sentinel;
             return oldback.item;
         }
     }
     public T get(int index) {
-        T ans;
+        T ans=null;
         while(index<=size&&index!=0){
-            ans=sentfront.item;
-            sentfront=sentfront.next;
+            ans=sentinel.item;
+            sentinel=sentinel.next;
             index-=1;
         }
-        return null;
+        return ans;
     }
     public T getRecursive(int index){
-        T ans;
-        if(index<=size||index!=0){return null;}
-        ans=sentfront.item;
-        sentfront=sentfront.next;
-        index-=1;
+        IntNode p = sentinel;
+        if(index<0){return null;}
+        else if(index==0) { return p.item;}
+            p = p.next;
+            index -= 1;
+
         return getRecursive(index);
     }
 }
