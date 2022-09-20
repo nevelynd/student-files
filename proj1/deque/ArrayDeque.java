@@ -31,20 +31,22 @@ public class ArrayDeque<T> {
     }
     public void addFirst(T item){
         if (size==array.length){
-            resizefirst(size+1);
-            size+=1;
+            resizefirst(size*2);
             array[0]=item;
         }
+
         else {array[nfirst]=item;}
+        size+=1;
         if (size!=array.length){
             nfirst=(nfirst-1)%(array.length-1);}
 
     }
     public void addLast(T item){
         if (size==array.length){
-            resizelast(size+1);
-            size+=1;}
+            resizelast(size*2);
+            }
         else {array[nfirst]=item;}
+        size+=1;
         if (size!=array.length){
         nlast=(nlast+1)%(array.length-1);}
 
@@ -71,12 +73,14 @@ public class ArrayDeque<T> {
     }
 
     public T get(int index){
-    if (index>(size-1)) {return null;}
+    if (index>(array.length-1)) {return null;}
     else {return array[index];}
 
     }
 
-    public boolean equals(Object o){return true;}
+    public boolean equals(Object o){return (o instanceof ArrayDeque<?> &&  array[0]==o)
+        ;
+    }
 
     public void printDeque(){
         T[] copy=  (T[]) new Object[size];;
