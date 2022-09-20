@@ -38,36 +38,41 @@ public class ArrayDeque<T> {
         else {array[nfirst]=item;}
         size+=1;
         if (size!=array.length){
-            nfirst=(nfirst-1)%(array.length-1);}
+            nfirst=(nfirst-1)%(array.length);}
 
     }
     public void addLast(T item){
         if (size==array.length){
             resizelast(size*2);
             }
-        else {array[nfirst]=item;}
+        array[nlast]=item;
         size+=1;
         if (size!=array.length){
-        nlast=(nlast+1)%(array.length-1);}
+
+            nlast=(nlast+1)%(array.length);}
+        else{nlast=array.length;}
 
     }
     public T removeFirst(){
         if (size!=0){
             T res= array[0];
-            T[] narray=  (T[]) new Object[size-1];
-            System.arraycopy(array, 1,narray,0, size-1);
+            T[] narray=  (T[]) new Object[array.length-1];
+            System.arraycopy(array, 1,narray,0, array.length-1);
             size-=1;
             array=narray;
+            nlast-=1;
             return res;}
         return null;
     }
     public T removeLast(){
         if (size!=0){
-            T oldback= array[nlast];
-            T[] narray=  (T[]) new Object[size-1];
+
+            T oldback= array[nlast-1];
+            T[] narray=  (T[]) new Object[array.length-1];
             System.arraycopy(array, 0,narray,0, size-1);
             size-=1;
             array=narray;
+            nlast-=1;
             return oldback;}
         return null;
     }
