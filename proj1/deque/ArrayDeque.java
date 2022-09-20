@@ -79,7 +79,7 @@ public class ArrayDeque<T> {
     public boolean equals(Object o){return true;}
 
     public void printDeque(){
-        T[] copy= {};
+        T[] copy=  (T[]) new Object[size];;
         System.arraycopy(array, 0,copy,0, size);
         int i= 0;
         int count=size;
