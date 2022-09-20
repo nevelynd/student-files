@@ -17,14 +17,16 @@ public class ArrayDequeTest {
     /* Add large number of elements to deque; check if order is correct. */
     public void bigLLDequeTest() {
 
-
+        int  a=0;
         ArrayDeque<Integer> ad1 = new ArrayDeque<Integer>();
         for (int i = 0; i < 10; i++) {
+            a=ad1.size();
+
             ad1.addLast(i);
         }
         for (double i = 0; i < 5; i++) {
-            ad1.removeFirst();
-            //assertEquals("Should have the same value", i, (double) lld1.removeFirst(), 0.0);
+            //ad1.removeFirst();
+            assertEquals("Should have the same value", i, (double) lld1.removeFirst(), 0.0);
         }
 
         for (double i = 9; i > 5; i--) {
@@ -33,4 +35,26 @@ public class ArrayDequeTest {
 
 
     }
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
