@@ -11,7 +11,7 @@ public class ArrayDeque<T> {
         array = (T[]) new Object[0];
         size = 0;
         nfirst= 0;
-        nlast=array.length-1;
+        nlast=array.length;
 
 
     }
