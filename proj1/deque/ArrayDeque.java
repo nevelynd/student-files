@@ -31,7 +31,7 @@ public class ArrayDeque<T> {
     }
     public void addFirst(T item){
         if (size==array.length){
-            resizefirst(size*2);
+            resizefirst(size+1);
             array[0]=item;
         }
 
@@ -43,7 +43,7 @@ public class ArrayDeque<T> {
     }
     public void addLast(T item){
         if (size==array.length){
-            resizelast(size*2);
+            resizelast(size+1);
             }
         array[nlast]=item;
         size+=1;
@@ -60,7 +60,7 @@ public class ArrayDeque<T> {
             System.arraycopy(array, 1,narray,0, array.length-1);
             size-=1;
             array=narray;
-            nlast-=1;
+            nlast=(nlast-1)%(array.length);
             return res;}
         return null;
     }
@@ -72,7 +72,7 @@ public class ArrayDeque<T> {
             System.arraycopy(array, 0,narray,0, size-1);
             size-=1;
             array=narray;
-            nlast-=1;
+            nlast=(nlast-1)%(array.length);
             return oldback;}
         return null;
     }
