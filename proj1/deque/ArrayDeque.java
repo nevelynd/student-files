@@ -59,7 +59,7 @@ public class ArrayDeque<T> {
 
     }
     public T removeFirst(){
-        if (size!=0){
+        if (size!=0||array.length!=0){
             T res= array[0];
             T[] narray=  (T[]) new Object[array.length-1];
             System.arraycopy(array, 1,narray,0, array.length-1);
@@ -73,7 +73,7 @@ public class ArrayDeque<T> {
         return null;
     }
     public T removeLast(){
-        if (size!=0){
+        if (size!=0 ||array.length!=0){
 
             int oldbacki= nlast-1;
 
