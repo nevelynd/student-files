@@ -75,7 +75,14 @@ public class ArrayDeque<T> {
     public T removeLast(){
         if (size!=0){
 
-            T oldback= array[nlast-1];
+            int oldbacki= nlast-1;
+
+            if (oldbacki<0)
+            {if (size!=1)
+            {oldbacki=array.length-1;}
+                else {oldbacki=0;}
+            }
+            T ans= array[oldbacki];
             T[] narray=  (T[]) new Object[array.length-1];
             System.arraycopy(array, 0,narray,0, size-1);
             size-=1;
@@ -84,7 +91,7 @@ public class ArrayDeque<T> {
             if (nlast<0){
                 nlast=array.length-1;
             }
-            return oldback;}
+            return ans;}
         return null;
     }
 

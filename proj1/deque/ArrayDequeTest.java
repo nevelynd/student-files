@@ -18,7 +18,7 @@ public class ArrayDequeTest {
         ArrayDeque<Integer> ad1 = new ArrayDeque<Integer>();
         ad1.addLast(1);
         ad1.get(0);
-        
+
     }
 
 
