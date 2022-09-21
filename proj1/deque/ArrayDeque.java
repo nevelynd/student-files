@@ -8,7 +8,7 @@ public class ArrayDeque<T> {
     private T[] array;
     public ArrayDeque() {
 
-        array = (T[]) new Object[8];
+        array = (T[]) new Object[0];
         size = 0;
         nfirst= 0;
         nlast=array.length-1;
@@ -38,7 +38,11 @@ public class ArrayDeque<T> {
         else {array[nfirst]=item;}
         size+=1;
         if (size!=array.length){
-            nfirst=(nfirst-1)%(array.length);}
+            nfirst=(nfirst-1);
+            if (nfirst<0){
+                nfirst=array.length-1;
+            }
+        }
 
     }
     public void addLast(T item){
@@ -49,7 +53,8 @@ public class ArrayDeque<T> {
         size+=1;
         if (size!=array.length){
 
-            nlast=(nlast+1)%(array.length);}
+            nlast=(nlast+1)%array.length;
+            }
         else{nlast=array.length;}
 
     }
@@ -60,7 +65,10 @@ public class ArrayDeque<T> {
             System.arraycopy(array, 1,narray,0, array.length-1);
             size-=1;
             array=narray;
-            nlast=(nlast-1)%(array.length);
+            nlast=(nlast-1);
+            if (nlast<0){
+                nlast=array.length-1;
+            }
             return res;}
         return null;
     }
@@ -72,7 +80,10 @@ public class ArrayDeque<T> {
             System.arraycopy(array, 0,narray,0, size-1);
             size-=1;
             array=narray;
-            nlast=(nlast-1)%(array.length);
+            nlast=(nlast-1);
+            if (nlast<0){
+                nlast=array.length-1;
+            }
             return oldback;}
         return null;
     }
