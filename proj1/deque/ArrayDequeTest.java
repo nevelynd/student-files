@@ -42,11 +42,17 @@ public class ArrayDequeTest {
     @Test
     public void Test3() {
         ArrayDeque<Integer> ad1 = new ArrayDeque<Integer>();
+        Random n = new Random();
+        int a = n.nextInt(7);
         for (int i = 0; i < 10; i++) {
             ad1.addLast(i);
         }
-        for (int i = 0; i < 10; i++) {
-            ad1.get(i);
+        for (int i = 0; i < a; i++) {
+            ad1.removeLast();
+        }
+        for (int i = 0; i < ad1.size(); i++) {
+            int b=ad1.get(i);
+            assertEquals(b,i);
         }
 
 

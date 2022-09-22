@@ -19,21 +19,24 @@ public class ArrayDeque<T> {
     public boolean isEmpty() {return size==0;}
 
     //@Hug
-    private void resizefirst(int cap){
+    private void resizefirst(int cap, int size){
         T[] narray= (T[]) new Object[cap];
         System.arraycopy(array, 0,narray,1, size);
         array=narray;
     }
-    private void resizelast(int cap){
+    private void resizelast(int cap,int size){
         T[] narray= (T[]) new Object[cap];
         System.arraycopy(array, 0,narray,0, size);
         array=narray;
     }
+
     public void addFirst(T item){
         if (size==array.length){
-            resizefirst(size+1);
-            array[0]=item;}
-        else {array[nfirst]=item;}
+
+            resizefirst(size+1,size);
+            nfirst=0;}
+
+        array[nfirst]=item;
         size+=1;
             nfirst=(nfirst-1);
             nlast=(nlast+1)%array.length;
@@ -45,26 +48,26 @@ public class ArrayDeque<T> {
     }
     public void addLast(T item){
         if (size==array.length){
-            resizelast(size+1);}
-        if (array.length==1) {array[nlast]=item;}
-        else {array[nlast+1]=item;}
+
+            resizelast(size+1,size);
+            nlast=array.length-1;}
+        array[nlast]=item;
 
         size+=1;
         nlast=(nlast+1);
-        if (nlast>=array.length){
+        if (size!=array.length && nlast==array.length)
+        {nlast=0;}
 
-
-
-        nlast=0;}
 
     }
     public T removeFirst(){
         if (size!=0||array.length!=0){
             T res= array[0];
-            T[] narray=  (T[]) new Object[array.length-1];
-            System.arraycopy(array, 1,narray,0, array.length-1);
+            resizefirst(size-1,size-1);
+           // T[] narray=  (T[]) new Object[size-1];
+           // System.arraycopy(array, 1,narray,0, size-1);
             size-=1;
-            array=narray;
+            //array=narray;
             nlast=(nlast-1);
             if (nlast<0){
                 if (size==array.length) {nlast=0;}
@@ -84,10 +87,11 @@ public class ArrayDeque<T> {
                 else {oldbacki=0;}
             }
             T ans= array[oldbacki];
-            T[] narray=  (T[]) new Object[array.length-1];
-            System.arraycopy(array, 0,narray,0, size-1);
+            resizelast(size-1,size-1);
+            //T[] narray=  (T[]) new Object[size-1];
+            //System.arraycopy(array, 0,narray,0, size-1);
             size-=1;
-            array=narray;
+            //array=narray;
             nlast=(nlast-1);
             if (nlast<0){
                 if (size==array.length) {nlast=0;}
