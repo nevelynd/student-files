@@ -32,30 +32,30 @@ public class ArrayDeque<T> {
     public void addFirst(T item){
         if (size==array.length){
             resizefirst(size+1);
-            array[0]=item;
-        }
-
+            array[0]=item;}
         else {array[nfirst]=item;}
         size+=1;
-        if (size!=array.length){
             nfirst=(nfirst-1);
+            nlast=(nlast+1)%array.length;
             if (nfirst<0){
-                nfirst=array.length-1;
+                if (size==array.length) {nfirst=0;}
+                else{nfirst=array.length-1;}
             }
-        }
 
     }
     public void addLast(T item){
         if (size==array.length){
             resizelast(size+1);
+            array[nlast+1]=item;
             }
-        array[nlast]=item;
+        else{array[nlast]=item;}
         size+=1;
-        if (size!=array.length){
+        nlast=(nlast+1);
+        if (nlast>=array.length){
 
-            nlast=(nlast+1)%array.length;
-            }
-        else{nlast=array.length;}
+
+
+        nlast=0;}
 
     }
     public T removeFirst(){
@@ -67,7 +67,8 @@ public class ArrayDeque<T> {
             array=narray;
             nlast=(nlast-1);
             if (nlast<0){
-                nlast=array.length-1;
+                if (size==array.length) {nlast=0;}
+                else{nlast=array.length-1;}
             }
             return res;}
         return null;
@@ -89,7 +90,8 @@ public class ArrayDeque<T> {
             array=narray;
             nlast=(nlast-1);
             if (nlast<0){
-                nlast=array.length-1;
+                if (size==array.length) {nlast=0;}
+                else{nlast=array.length-1;}
             }
             return ans;}
         return null;
