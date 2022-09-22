@@ -19,21 +19,26 @@ public class ArrayDeque<T> {
     public boolean isEmpty() {return size==0;}
 
     //@Hug
-    private void resizefirst(int cap, int size){
+    private void resizefirst(int cap){
         T[] narray= (T[]) new Object[cap];
         System.arraycopy(array, 0,narray,1, size);
         array=narray;
     }
-    private void resizelast(int cap,int size){
+    private void resizelast(int cap,int sizee){
         T[] narray= (T[]) new Object[cap];
-        System.arraycopy(array, 0,narray,0, size);
+        System.arraycopy(array, 0,narray,0, sizee);
+        array=narray;
+    }
+    private void resizefirstrm(int cap){
+        T[] narray= (T[]) new Object[cap];
+        System.arraycopy(array, 1,narray,0, size-1);
         array=narray;
     }
 
     public void addFirst(T item){
         if (size==array.length){
 
-            resizefirst(size+1,size);
+            resizefirst(size+1);
             nfirst=0;}
 
         array[nfirst]=item;
@@ -63,7 +68,7 @@ public class ArrayDeque<T> {
     public T removeFirst(){
         if (size!=0||array.length!=0){
             T res= array[0];
-            resizefirst(size-1,size-1);
+            resizefirstrm(size-1);
            // T[] narray=  (T[]) new Object[size-1];
            // System.arraycopy(array, 1,narray,0, size-1);
             size-=1;
