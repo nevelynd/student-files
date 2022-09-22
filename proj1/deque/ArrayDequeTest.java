@@ -19,10 +19,10 @@ public class ArrayDequeTest {
     @Test
     public void Test2() {
         ArrayDeque<Integer> ad1 = new ArrayDeque<Integer>();
-        Random n= new Random();
+        Random n = new Random();
 
         for (int i = 0; i < 100; i++) {
-            int a= n.nextInt(3);
+            int a = n.nextInt(3);
             if (a == 0) {
                 ad1.addLast(i);
             }
@@ -35,16 +35,24 @@ public class ArrayDequeTest {
             if (a == 3) {
                 ad1.removeFirst();
             }
-        }}
+        }
+    }
+
+
+    @Test
+    public void Test3() {
+        ArrayDeque<Integer> ad1 = new ArrayDeque<Integer>();
+        for (int i = 0; i < 10; i++) {
+            ad1.addLast(i);
+        }
+        for (int i = 0; i < 10; i++) {
+            ad1.get(i);
+        }
+
+
+    }
+
 }
-
-
-
-
-
-
-
-
 
 
 

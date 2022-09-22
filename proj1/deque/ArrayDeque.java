@@ -45,10 +45,10 @@ public class ArrayDeque<T> {
     }
     public void addLast(T item){
         if (size==array.length){
-            resizelast(size+1);
-            array[nlast+1]=item;
-            }
-        else{array[nlast]=item;}
+            resizelast(size+1);}
+        if (array.length==1) {array[nlast]=item;}
+        else {array[nlast+1]=item;}
+
         size+=1;
         nlast=(nlast+1);
         if (nlast>=array.length){
