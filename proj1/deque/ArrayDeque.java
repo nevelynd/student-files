@@ -120,7 +120,7 @@ public class ArrayDeque<T> implements Deque<T> {
 
     public T get(int index){
     if (index>(size-1)) {return null;}
-    else {return array[index+nfirst+1];}
+    else {return array[(index+(nfirst+1)%size)];}
 
     }
 
