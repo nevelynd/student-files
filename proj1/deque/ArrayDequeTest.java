@@ -37,10 +37,21 @@ public class ArrayDequeTest {
             }
         }
     }
+    @Test
+    public void Test3() {
+        ArrayDeque<Integer> ad1 = new ArrayDeque<Integer>();
 
 
+        for (int i = 0; i < 1000000; i++) {
+            ad1.addLast(i);
+        }
 
-
+        for (int i = 0; i < 500000; i++) {
+            ad1.removeFirst();
+        }
+        for (int i = 0; i < 500000; i++) {
+            ad1.removeLast();
+        }}
 }
 
 

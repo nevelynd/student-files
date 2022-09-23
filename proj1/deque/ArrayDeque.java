@@ -20,15 +20,18 @@ public class ArrayDeque<T> implements Deque<T> {
     public boolean isEmpty() {return size==0;}
 
     //@Hug
-    private void resizefirst(int cap){
-        T[] narray= (T[]) new Object[cap];
-        System.arraycopy(array, 0,narray,1, size);
+    //private void resizefirst(int cap){
+        //T[] narray= (T[]) new Object[cap];
+        //System.arraycopy(array, 0,narray,1, size);
 
-        array=narray;
-    }
-    private void resizelast(int cap,int sizee){
+       // array=narray;}
+    private void resize(int cap){
         T[] narray= (T[]) new Object[cap];
-        System.arraycopy(array, 0,narray,0, sizee);
+        for (int i = 0; i < array.length; i++) {
+            int a=(1+nfirst+i)%array.length;
+            narray[i]=array[a];
+
+        }
         array=narray;
     }
     private void resizefirstrm(int cap){
@@ -39,20 +42,24 @@ public class ArrayDeque<T> implements Deque<T> {
 
     public void addFirst(T item){
         if (size==array.length){
-            nlast=array.length+1;
-            resizefirst(size*2);
-            nfirst=0;
+            nlast=size+1;
+            resize(size*2);
+            nfirst=array.length-1;
+
         }
         array[nfirst]=item;
-        size+=1;
         nfirst=(nfirst-1);
-            if (nfirst<0){
-               nfirst=array.length-1;
-            }}
+        if (nfirst<0){
+            nfirst=array.length-1;
+        }
+
+        size+=1;
+        }
     public void addLast(T item){
         if (size==array.length){
             nlast=array.length;
-            resizelast(size*2,size);}
+            resize(size*2);
+       }
 
         array[nlast]=item;
 
@@ -62,7 +69,7 @@ public class ArrayDeque<T> implements Deque<T> {
         {nlast=0;}
     }
     public T removeFirst(){
-        if (size!=0||array.length!=0){
+        if (size!=0&&array.length!=0){
             nfirst=0;
             T res= array[0];
             resizefirstrm(size-1);
@@ -74,7 +81,7 @@ public class ArrayDeque<T> implements Deque<T> {
             return res;}
         return null;}
     public T removeLast(){
-        if (size!=0 ||array.length!=0){
+        if (size!=0 &&array.length!=0){
 
             int oldbacki= nlast-1;
 
