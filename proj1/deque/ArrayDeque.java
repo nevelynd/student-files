@@ -28,7 +28,7 @@ public class ArrayDeque<T> implements Deque<T> {
     private void resize(int cap){
         T[] narray= (T[]) new Object[cap];
         for (int i = 0; i < array.length; i++) {
-            int a=(1+nfirst+i)%array.length;
+            int a=(1+nfirst+i)%size;
             narray[i]=array[a];
 
         }
@@ -36,7 +36,23 @@ public class ArrayDeque<T> implements Deque<T> {
     }
     private void resizefirstrm(int cap){
         T[] narray= (T[]) new Object[cap];
-        System.arraycopy(array, 1,narray,0, size-1);
+       // System.arraycopy(array, 1,narray,0, size-1);
+        for (int i = 0; i < size-1; i++) {
+            int a=(2+nfirst+i)%array.length;
+            narray[i]=array[a];
+
+        }
+        array=narray;
+    }
+
+    private void resizelastrm(int cap){
+        T[] narray= (T[]) new Object[cap];
+        // System.arraycopy(array, 1,narray,0, size-1);
+        for (int i = 0; i < size-1; i++) {
+            int a=(1+nfirst+i)%array.length;
+            narray[i]=array[a];
+
+        }
         array=narray;
     }
 
@@ -64,14 +80,13 @@ public class ArrayDeque<T> implements Deque<T> {
         array[nlast]=item;
 
         size+=1;
-        nlast=(nlast+1);
-        if (size!=array.length && nlast==array.length)
-        {nlast=0;}
+        nlast=(nlast+1)%array.length;
+
     }
     public T removeFirst(){
         if (size!=0&&array.length!=0){
             nfirst=0;
-            T res= array[0];
+            T res= array[(nfirst+1)%size];
             resizefirstrm(size-1);
             size-=1;
             nlast=(nlast-1);
@@ -90,7 +105,7 @@ public class ArrayDeque<T> implements Deque<T> {
             {oldbacki=array.length-1;}
                 else {oldbacki=0;}}
             T ans= array[oldbacki];
-            resizelast(size-1,size-1);
+            resizelastrm(size-1);
             size-=1;
             nlast=(nlast-1);
             if (nlast<0){
@@ -100,8 +115,8 @@ public class ArrayDeque<T> implements Deque<T> {
         return null;}
 
     public T get(int index){
-    if (index>(array.length-1)) {return null;}
-    else {return array[index];}
+    if (index>(size-1)) {return null;}
+    else {return array[index+nfirst+1];}
 
     }
 
