@@ -11,8 +11,8 @@ public class ArrayDeque<T> implements Deque<T> {
 
         array = (T[]) new Object[8];
         size = 0;
-        nfirst= 3;
-        nlast=4;
+        nfirst= 0;
+        nlast=1;
 
 
     }
