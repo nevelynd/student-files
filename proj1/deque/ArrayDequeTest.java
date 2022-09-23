@@ -2,6 +2,7 @@ package deque;
 
 import org.junit.Test;
 
+import java.util.Optional;
 import java.util.Random;
 
 import static org.junit.Assert.*;
@@ -55,7 +56,16 @@ public class ArrayDequeTest {
        //for (int i = 0; i < 500000; i++) {
            // ad1.removeLast();
        // }}
-}}
+}
+@Test
+    public void Test4() {
+        ArrayDeque<Integer> ad1 = new ArrayDeque<Integer>();
+
+        ad1.addFirst(0);
+
+        ad1.get(0);
+    assertEquals("i", (int) ad1.get(0), 0);}
+}
 
 
 

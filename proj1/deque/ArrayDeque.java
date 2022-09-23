@@ -86,7 +86,7 @@ public class ArrayDeque<T> implements Deque<T> {
     }
     public T removeFirst(){
         if (size!=0&&array.length!=0){
-            T res= array[(nfirst+1)%size];
+            T res= array[(nfirst+1)%array.length];
 
 
             resizefirstrm(size-1);
