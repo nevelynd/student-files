@@ -43,13 +43,13 @@ public class ArrayDequeTest {
     public void Test3() {
         ArrayDeque<Integer> ad1 = new ArrayDeque<Integer>();
 
-        for (int i = 0; i < 1000000; i++) {
+        for (int i = 0; i < 7; i++) {
             ad1.addFirst(i);
         }
 
 
 
-        for (int i = 0; i < 5000; i++) {
+        for (int i = 0; i < 7; i++) {
            ad1.removeLast();}
 
        //for (int i = 0; i < 500000; i++) {

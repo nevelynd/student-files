@@ -75,6 +75,7 @@ public class ArrayDeque<T> implements Deque<T> {
         if (size==array.length){
             nlast=array.length;
             resize(size*2);
+
        }
 
         array[nlast]=item;
@@ -86,9 +87,10 @@ public class ArrayDeque<T> implements Deque<T> {
     public T removeFirst(){
         if (size!=0&&array.length!=0){
             T res= array[(nfirst+1)%size];
-            nfirst=0;
+
 
             resizefirstrm(size-1);
+            nfirst=array.length-1;
             size-=1;
             nlast=(nlast-1);
             if (nlast<0){
@@ -107,6 +109,7 @@ public class ArrayDeque<T> implements Deque<T> {
                 else {oldbacki=0;}}
             T ans= array[oldbacki];
             resizelastrm(size-1);
+            nfirst=array.length-1;
             size-=1;
             nlast=(nlast-1);
             if (nlast<0){
