@@ -39,9 +39,10 @@ public class ArrayDeque<T> implements Deque<T> {
 
     public void addFirst(T item){
         if (size==array.length){
-
+            nlast=array.length+1;
             resizefirst(size*2);
-            nfirst=0;}
+            nfirst=0;
+        }
         array[nfirst]=item;
         size+=1;
         nfirst=(nfirst-1);

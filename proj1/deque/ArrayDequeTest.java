@@ -39,46 +39,7 @@ public class ArrayDequeTest {
     }
 
 
-    @Test
-    public void Test3() {
-        ArrayDeque<Integer> ad1 = new ArrayDeque<Integer>();
-        Random n = new Random();
-        int a = n.nextInt(7);
-        for (int i = 0; i < 10; i++) {
-            ad1.addLast(i);
-        }
-        for (int i = 0; i < a; i++) {
-            ad1.removeLast();
-        }
-        for (int i = 0; i < ad1.size(); i++) {
-            int b=ad1.get(i);
-            assertEquals(b,i);
-        }
 
-
-    }
-    @Test
-    /* Add large number of elements to deque; check if order is correct. */
-    public void bigADequeTest() {
-
-
-        LinkedListDeque<Integer> ad1 = new LinkedListDeque<Integer>();
-        for (int i = 0; i < 1000000; i++) {
-            ad1.addLast(i);
-        }
-        for (int i = 0; i < 1000000; i++) {
-            ad1.addFirst(i);
-        }
-        for (double i = 0; i < 555555; i++) {
-            ad1.removeFirst();
-        }
-
-        for (double i = 999999; i > 555555; i--) {
-            ad1.removeLast();
-        }
-
-
-    }
 
 }
 
