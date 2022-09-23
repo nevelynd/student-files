@@ -57,6 +57,28 @@ public class ArrayDequeTest {
 
 
     }
+    @Test
+    /* Add large number of elements to deque; check if order is correct. */
+    public void bigADequeTest() {
+
+
+        LinkedListDeque<Integer> ad1 = new LinkedListDeque<Integer>();
+        for (int i = 0; i < 1000000; i++) {
+            ad1.addLast(i);
+        }
+        for (int i = 0; i < 1000000; i++) {
+            ad1.addFirst(i);
+        }
+        for (double i = 0; i < 555555; i++) {
+            ad1.removeFirst();
+        }
+
+        for (double i = 999999; i > 555555; i--) {
+            ad1.removeLast();
+        }
+
+
+    }
 
 }
 
