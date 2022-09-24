@@ -85,7 +85,7 @@ public class ArrayDeque<T> implements Deque<T> {
 
     }
     public T removeFirst(){
-        if (size!=0&&array.length!=0){
+        if (size!=0||size>0&&array.length!=0){
             T res= array[(nfirst+1)%array.length];
 
 
@@ -99,7 +99,7 @@ public class ArrayDeque<T> implements Deque<T> {
             return res;}
         return null;}
     public T removeLast(){
-        if (size!=0 &&array.length!=0){
+        if (size!=0 ||size>0&&array.length!=0){
 
             int oldbacki= nlast-1;
 
@@ -119,7 +119,8 @@ public class ArrayDeque<T> implements Deque<T> {
         return null;}
 
     public T get(int index){
-    if (index>(size-1)&&size!=1) {return null;}
+        if (index==(size-1)&&index==0) {return 0;}
+    if (index>(size-1)) {return null;}
     else {return array[(index+(nfirst+1)%size)];}
 
     }
