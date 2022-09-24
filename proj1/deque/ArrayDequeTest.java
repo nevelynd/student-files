@@ -44,28 +44,31 @@ public class ArrayDequeTest {
     public void Test3() {
         ArrayDeque<Integer> ad1 = new ArrayDeque<Integer>();
 
-        for (int i = 0; i < 1000000; i++) {
+        for (int i = 0; i < 10000; i++) {
             ad1.addFirst(i);
         }
 
 
 
-        for (int i = 0; i < 500000; i++) {
+        for (int i = 0; i < 5000; i++) {
            ad1.removeLast();}
 
        //for (int i = 0; i < 500000; i++) {
            // ad1.removeLast();
        // }}
 }
-@Test
+    @Test
     public void Test4() {
         ArrayDeque<Integer> ad1 = new ArrayDeque<Integer>();
+        for (int i = 0; i < 10; i++) {
+        ad1.addFirst(i);
 
-        ad1.addFirst(0);
-
-        ad1.get(0);
-    assertEquals("i", (int) ad1.get(0), 0);}
-}
+        assertEquals("i", (int) ad1.get(0), i);}
+        for (int i = 9; i <5; i++) {
+            assertEquals("i", (int) ad1.removeFirst(), i);}
+        for (int i = 5; i <=0; i++) {
+            assertEquals("i", (int) ad1.removeLast(), i);}
+}}
 
 
 
