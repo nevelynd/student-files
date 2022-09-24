@@ -1,7 +1,7 @@
 package deque;
 import java.util.Iterator;
 
-public class ArrayDeque<T> implements Deque<T> {
+public class ArrayDeque<T> implements Iterable<T>{ //implements Deque<T> {
     private int size;
     private int nfirst;
     private int nlast;
@@ -35,25 +35,30 @@ public class ArrayDeque<T> implements Deque<T> {
         array=narray;
     }
     private void resizefirstrm(int cap){
-        T[] narray= (T[]) new Object[cap];
+        if (size==1) {array=(T[]) new Object[0];}
+
+
        // System.arraycopy(array, 1,narray,0, size-1);
-        for (int i = 0; i < size-1; i++) {
+        else{
+            T[] narray= (T[]) new Object[cap];
+            for (int i = 0; i < size-1; i++) {
             int a=(2+nfirst+i)%array.length;
             narray[i]=array[a];
 
         }
-        array=narray;
+        array=narray;}
     }
 
     private void resizelastrm(int cap){
-        T[] narray= (T[]) new Object[cap];
+        if (size==1) {array=(T[]) new Object[0];}
+        else{T[] narray= (T[]) new Object[cap];
         // System.arraycopy(array, 1,narray,0, size-1);
         for (int i = 0; i < size-1; i++) {
-            int a=(1+nfirst+i)%array.length;
-            narray[i]=array[a];
-
+            int a = (1 + nfirst + i) % array.length;
+            narray[i] = array[a];
         }
-        array=narray;
+
+        array=narray;}
     }
 
     public void addFirst(T item){
@@ -85,7 +90,7 @@ public class ArrayDeque<T> implements Deque<T> {
 
     }
     public T removeFirst(){
-        if (size!=0||size>0&&array.length!=0){
+        if (size!=0||array.length!=0){
             T res= array[(nfirst+1)%array.length];
 
 
@@ -99,7 +104,7 @@ public class ArrayDeque<T> implements Deque<T> {
             return res;}
         return null;}
     public T removeLast(){
-        if (size!=0 ||size>0&&array.length!=0){
+        if (size!=0 ||array.length!=0){
 
             int oldbacki= nlast-1;
 
@@ -119,8 +124,8 @@ public class ArrayDeque<T> implements Deque<T> {
         return null;}
 
     public T get(int index){
-        if (index==(size-1)&&index==0) {return 0;}
-    if (index>(size-1)) {return null;}
+
+    if (index>(size-1) ) {return null;}
     else {return array[(index+(nfirst+1)%size)];}
 
     }
