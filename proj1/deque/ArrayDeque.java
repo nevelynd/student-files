@@ -43,8 +43,10 @@ public class ArrayDeque<T> implements Iterable<T>,Deque<T> {
         // System.arraycopy(array, 1,narray,0, size-1);
         else{
             T[] narray= (T[]) new Object[cap];
-            if (size==2) {array=(T[]) new Object[nfirst+2];}
-            else{for (int i = 0; i < size-2; i++) {
+            if (size==2) {T temp=array[nfirst+2%array.length];
+                array=(T[]) new Object[1];
+            array[0]=temp;}
+            else{for (int i = 0; i < size-1; i++) {
             int a=(2+nfirst+i)%array.length;
             narray[i]=array[a];}
 
@@ -55,14 +57,16 @@ public class ArrayDeque<T> implements Iterable<T>,Deque<T> {
     private void resizelastrm(int cap){
         if (size==1) {array=(T[]) new Object[0];}
         else{T[] narray= (T[]) new Object[cap];
-        // System.arraycopy(array, 1,narray,0, size-1);
-        for (int i = 0; i < size-1; i++) {
+            if (size==2) {T temp=array[nlast-1%array.length];
+                array=(T[]) new Object[1];
+                array[0]=temp;}
+        else{for (int i = 0; i < size-1; i++) {
             int a = (1 + nfirst + i) % array.length;
-            narray[i] = array[a];
-        }
+            narray[i] = array[a];}
+
 
         array=narray;}
-    }
+    }}
 
     public void addFirst(T item){
         if (size==array.length){
@@ -108,9 +112,10 @@ public class ArrayDeque<T> implements Iterable<T>,Deque<T> {
         return null;}
     public T removeLast(){
         if (size!=0){
-
-            int oldbacki= nlast-1;
-
+            int oldbacki;
+            if (nlast!=nfirst)
+            { oldbacki= nlast-1;}
+            else { oldbacki=nlast;}
             if (oldbacki<0)
             {if (size!=1)
             {oldbacki=array.length-1;}
