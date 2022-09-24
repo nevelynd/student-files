@@ -1,7 +1,7 @@
 package deque;
 import java.util.Iterator;
 
-public class ArrayDeque<T> implements Iterable<T>{ //implements Deque<T> {
+public class ArrayDeque<T> implements Deque<T>{ //implements Deque<T> {
     private int size;
     private int nfirst;
     private int nlast;
