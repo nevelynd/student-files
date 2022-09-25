@@ -45,7 +45,8 @@ public class ArrayDequeTest {
 
         for (int i = 0; i < 1; i++) {
             ad1.addLast(i);
-            ad1.get(0);
+            assertEquals("i", (int) ad1.get(0), i);
+
         }
 
 
