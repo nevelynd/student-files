@@ -43,9 +43,9 @@ public class ArrayDequeTest {
     public void Test3() {
         ArrayDeque<Integer> ad1 = new ArrayDeque<Integer>();
 
-        for (int i = 0; i < 1; i++) {
+        for (int i = 0; i < 1000000; i++) {
             ad1.addLast(i);
-            assertEquals("i", (int) ad1.get(0), i);
+
 
         }
 
@@ -53,7 +53,7 @@ public class ArrayDequeTest {
 
         for (int i = 0; i < 49; i++) {
            ad1.removeFirst();}
-        for (int i =49; i < 5000; i++) {
+        for (int i =49; i < 50000; i++) {
             ad1.removeLast();}
 
        //for (int i = 0; i < 500000; i++) {

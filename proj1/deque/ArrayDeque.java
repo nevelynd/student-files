@@ -19,11 +19,11 @@ public class ArrayDeque<T> implements Iterable<T>,Deque<T> {
     public int size() {return size;}
     public boolean isEmpty() {return size==0;}
 
-    private void resizebrm() {
-        if (array.length>=16&&size<=4) {
-        {T[] narray= (T[]) new Object[size];
-        System.arraycopy(array, 0, narray, 0, size);
-        array=narray;}}
+    private void resizebrm(int cap) {
+
+        {T[] narray= (T[]) new Object[cap];
+        System.arraycopy(array, 0, narray, 0, cap);
+        array=narray;}
     }
 
     private void resizef(int cap){
@@ -120,7 +120,8 @@ public class ArrayDeque<T> implements Iterable<T>,Deque<T> {
 
 
     public T removeFirst(){
-       // resizebrm();
+        if (array.length>=16&&size<=4) {
+       resizebrm(array.length/2);}
         if (size!=0){
             T res= array[(nfirst+1)%array.length];
 
@@ -136,7 +137,8 @@ public class ArrayDeque<T> implements Iterable<T>,Deque<T> {
             return res;}
         return null;}
     public T removeLast(){
-        resizebrm();
+        if (array.length>=16&&size<=4) {
+            resizebrm(array.length/2);}
         if (size!=0){
             int oldbacki;
             oldbacki= nlast-1;
