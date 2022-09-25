@@ -69,7 +69,9 @@ public class ArrayDeque<T> implements Iterable<T>,Deque<T> {
     }}
 
     public void addFirst(T item){
+
         if (size==array.length){
+            if (array.length==0) {array=(T[]) new Object[1];}
             nlast=size+1;
             resize(array.length*2);
             nfirst=array.length-1;
@@ -78,6 +80,7 @@ public class ArrayDeque<T> implements Iterable<T>,Deque<T> {
         array[nfirst]=item;
         nfirst=(nfirst-1);
         if (nfirst<0){
+
             nfirst=array.length-1;
         }
 
@@ -85,6 +88,7 @@ public class ArrayDeque<T> implements Iterable<T>,Deque<T> {
         }
     public void addLast(T item){
         if (size==array.length){
+            if (array.length==0) {array=(T[]) new Object[1];}
             nlast=array.length;
             resize(array.length*2);
 
