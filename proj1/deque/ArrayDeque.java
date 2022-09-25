@@ -83,9 +83,12 @@ public class ArrayDeque<T> implements Iterable<T>,Deque<T> {
         }
     public void addLast(T item){
         if (size==array.length){
-            if (array.length==0) {array=(T[]) new Object[1];}
-            nlast=array.length;
-            resize(array.length*2);
+            if (array.length==0) {array=(T[]) new Object[1];
+                nlast=0;}
+            else {resize(array.length*2);
+                nlast=array.length;}
+
+
             nfirst=array.length-1;
 
        }
@@ -124,8 +127,10 @@ public class ArrayDeque<T> implements Iterable<T>,Deque<T> {
                 else {oldbacki=0;}}
             T ans= array[oldbacki];
             resizelastrm(size-1);
-            nfirst=array.length-1;
             size-=1;
+            if (size!=0) {nfirst=array.length-1;}
+
+
             nlast=(nlast-1);
             if (nlast<0){
                 if (size==array.length) {nlast=0;}
