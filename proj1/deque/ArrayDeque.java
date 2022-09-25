@@ -72,7 +72,7 @@ public class ArrayDeque<T> implements Iterable<T>,Deque<T> {
 
         if (size==array.length){
             if (array.length==0) {array=(T[]) new Object[1];}
-            nlast=size+1;
+            nlast=size;
             resize(array.length*2);
             nfirst=array.length-1;
 
@@ -118,9 +118,9 @@ public class ArrayDeque<T> implements Iterable<T>,Deque<T> {
     public T removeLast(){
         if (size!=0){
             int oldbacki;
-            if (nlast!=nfirst)
-            { oldbacki= nlast-1;}
-            else { oldbacki=nlast;}
+            //if (nlast!=nfirst)
+            oldbacki= nlast-1;
+
             if (oldbacki<0)
             {if (size!=1)
             {oldbacki=array.length-1;}

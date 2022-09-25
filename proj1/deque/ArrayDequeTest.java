@@ -24,7 +24,6 @@ public class ArrayDequeTest {
 
         for (int i = 0; i < 10; i++) {
             int a = n.nextInt(3);
-            a = 0;
             if (a == 0) {
                 ad1.addLast(i);
             }
@@ -61,14 +60,23 @@ public class ArrayDequeTest {
     public void Test4() {
         ArrayDeque<Integer> ad1 = new ArrayDeque<Integer>();
         for (int i = 0; i < 10; i++) {
-        ad1.addLast(i);
+            Random n = new Random();
+            int b = n.nextInt(2);
+            if (b==0)
+            {ad1.addLast(i);}
+            else {ad1.addFirst(i);}
+        }
 
-        assertEquals("i", (int) ad1.get(i), i);}
-        for (int i = 0; i <5; i++) {
-            assertEquals("i", (int) ad1.removeFirst(), i);}
-        for (int i = 9; i >=5; i--) {
-            assertEquals("i", (int) ad1.removeLast(), i);}
-}
+        for (int i = 10; i >0; i--) {
+            Random n = new Random();
+            int a = n.nextInt(2);
+            if (a==0)
+            {ad1.removeLast();
+
+            }
+            else {ad1.removeFirst();}
+
+}}
 
     @Test
     public void Test5() {
