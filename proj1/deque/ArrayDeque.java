@@ -161,8 +161,6 @@ public class ArrayDeque<T> implements Iterable<T>,Deque<T> {
         return null;}
 
     public T get(int index){
-
-
     if (index>(size-1) &&size!=1) {return null;}
     else {return array[((index+nfirst+1)%array.length)];}
 

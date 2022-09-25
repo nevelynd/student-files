@@ -130,4 +130,11 @@ public class LinkedListDequeTest {
 
 
     }
+    @Test
+    public void LLDequeTest() {
+        LinkedListDeque<Integer> LinkedListDeque = new LinkedListDeque<Integer>();
+    LinkedListDeque.addFirst(1);
+    LinkedListDeque.getRecursive(0);
+        assertEquals("Should have the same value",1, (int) LinkedListDeque.getRecursive(0)
+        );}
 }
