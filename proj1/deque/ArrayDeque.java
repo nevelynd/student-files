@@ -105,16 +105,17 @@ public class ArrayDeque<T> implements Iterable<T>,Deque<T> {
             nlast=size;
             array[nlast]=item;
             nlast=(nlast+1);
+            nfirst=array.length-1;
+            if (nfirst<0) {
+                if (size==array.length) {nfirst=0;}
+                else{nfirst=array.length-1;}
        }
         //else {
             //array[nlast]=item;
             //nlast=(nlast+1);
        // }
         size+=1;
-        nfirst=array.length-1;
-        if (nfirst<0) {
-            if (size==array.length) {nfirst=0;}
-            else{nfirst=array.length-1;}
+
         }
 
 
