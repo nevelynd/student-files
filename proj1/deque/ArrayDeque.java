@@ -30,7 +30,7 @@ public class ArrayDeque<T> implements Iterable<T>,Deque<T> {
 
         T[] narray= (T[]) new Object[cap];
             for (int i = 0; i < size; i++) {
-                int a=(nfirst+i)%size;
+                int a=(nfirst+i+1)%size;
                 narray[i]=array[a];
             }
             array=narray;

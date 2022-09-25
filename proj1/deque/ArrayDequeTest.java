@@ -120,6 +120,18 @@ public class ArrayDequeTest {
         ArrayDeque.addLast(2);
         ArrayDeque.addLast(3);
     }
+
+    @Test
+    public void Test8() {
+        ArrayDeque<Integer> ArrayDeque = new ArrayDeque<Integer>();
+        for (int i = 0; i < 10; i++) {
+        ArrayDeque.addFirst(i);}
+        for (int i = 0; i < 10; i++) {
+        ArrayDeque.removeFirst();}
+        for (int i = 0; i < 10; i++) {
+            ArrayDeque.addFirst(i);}
+
+    }
 }
 
 
