@@ -22,8 +22,8 @@ public class ArrayDequeTest {
         ArrayDeque<Integer> ad1 = new ArrayDeque<Integer>();
         Random n = new Random();
 
-        for (int i = 0; i < 10; i++) {
-            int a = n.nextInt(3);
+        for (int i = 0; i < 9; i++) {
+            int a = n.nextInt(2);
             if (a == 0) {
                 ad1.addLast(i);
             }
@@ -43,14 +43,14 @@ public class ArrayDequeTest {
     public void Test3() {
         ArrayDeque<Integer> ad1 = new ArrayDeque<Integer>();
 
-        for (int i = 0; i < 10000; i++) {
+        for (int i = 0; i < 1000000; i++) {
             ad1.addFirst(i);
         }
 
 
 
-        //for (int i = 0; i < 5000; i++) {
-         //  ad1.removeLast();}
+        for (int i = 0; i < 500000; i++) {
+           ad1.removeLast();}
 
        //for (int i = 0; i < 500000; i++) {
            // ad1.removeLast();
@@ -87,7 +87,30 @@ public class ArrayDequeTest {
         ad1.addFirst(i);}
         for (int i = 7; i >=0; i-=1) {
             {assertEquals("i", (int) ad1.removeFirst(), i);}}
-        }}
+        }
+
+    @Test
+    public void Test6() {
+        ArrayDeque<Integer> ad1 = new ArrayDeque<Integer>();
+        Random n = new Random();
+        int a = n.nextInt(20000);
+        for (int i = 0; i < a; i++) {
+
+                ad1.addLast(i);}
+        int b = n.nextInt(20000);
+            for (int i = 0; i < b; i++) {
+                ad1.addFirst(i);}
+        int c = n.nextInt(20000);
+        for (int i = 0; i < c; i++) {
+                ad1.removeLast();}
+        int d = n.nextInt(20000);
+        for (int i = 0; i < d; i++) {
+                ad1.removeFirst();}
+            }
+
+
+
+}
 
 
 
