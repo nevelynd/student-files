@@ -50,8 +50,8 @@ public class ArrayDequeTest {
 
 
 
-        for (int i = 0; i < 5000; i++) {
-           ad1.removeLast();}
+        //for (int i = 0; i < 5000; i++) {
+         //  ad1.removeLast();}
 
        //for (int i = 0; i < 500000; i++) {
            // ad1.removeLast();
@@ -78,7 +78,7 @@ public class ArrayDequeTest {
         for (int i = 0; i < 8; i++) {
         ad1.addFirst(i);}
         for (int i = 7; i >=0; i-=1) {
-            ad1.removeFirst();}//{assertEquals("i", (int) ad1.removeFirst(), i);}}
+            {assertEquals("i", (int) ad1.removeFirst(), i);}}
         }}
 
 
