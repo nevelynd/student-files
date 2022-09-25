@@ -1,8 +1,8 @@
 package deque;
 import java.util.Iterator;
 
-public class LinkedListDeque<T> implements Iterable<T>, Deque<T>{
-    public class IntNode {
+public class LinkedListDeque<T> implements Iterable<T>, Deque<T> {
+    private class IntNode {
         private T item;
         private IntNode prev;
         private IntNode next;
@@ -22,11 +22,13 @@ public class LinkedListDeque<T> implements Iterable<T>, Deque<T>{
         if (sentinel.next != null) {
             IntNode temp = sentinel.next;
             sentinel.next = new IntNode(sentinel, item, sentinel.next);
-            temp.prev = sentinel.next; }
+            temp.prev = sentinel.next;
+        }
 
         else {
             sentinel.next = new IntNode(sentinel, item, sentinel);
-            sentinel.prev = sentinel.next; }
+            sentinel.prev = sentinel.next;
+        }
         size += 1;
     }
     public void addLast(T item){

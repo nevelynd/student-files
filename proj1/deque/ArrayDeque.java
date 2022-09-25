@@ -91,6 +91,7 @@ public class ArrayDeque<T> implements Iterable<T>,Deque<T> {
             if (array.length==0) {array=(T[]) new Object[1];}
             nlast=array.length;
             resize(array.length*2);
+            nfirst=array.length-1;
 
        }
 

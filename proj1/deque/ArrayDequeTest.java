@@ -61,12 +61,12 @@ public class ArrayDequeTest {
     public void Test4() {
         ArrayDeque<Integer> ad1 = new ArrayDeque<Integer>();
         for (int i = 0; i < 10; i++) {
-        ad1.addFirst(i);
+        ad1.addLast(i);
 
-        assertEquals("i", (int) ad1.get(0), i);}
-        for (int i = 9; i >5; i--) {
+        assertEquals("i", (int) ad1.get(i), i);}
+        for (int i = 0; i <5; i++) {
             assertEquals("i", (int) ad1.removeFirst(), i);}
-        for (int i = 0; i <=5; i++) {
+        for (int i = 9; i >=5; i--) {
             assertEquals("i", (int) ad1.removeLast(), i);}
 }
 
