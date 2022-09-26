@@ -122,11 +122,11 @@ public class ArrayDeque<T> implements Iterable<T>, Deque<T> {
     public T removeFirst() {
         //resizef(array.length);
         if (array.length >= SIXTEEN && size <= FOUR) {
-            resize(array.length / 2);
+            resize(size - 1);
         }
         if (size != 0) {
             T res = array[(nfirst + 1) % array.length];
-            resizefirstrm(size - 1);
+            array[nfirst] = null;
             size -= 1;
             nlast = size;
             return res;
@@ -136,7 +136,7 @@ public class ArrayDeque<T> implements Iterable<T>, Deque<T> {
 
     public T removeLast() {
         if (array.length >= SIXTEEN && size <= FOUR) {
-            resize(array.length / 2);
+            resize(size - 1);
         }
         if (size != 0) {
             int oldbacki;
@@ -150,7 +150,7 @@ public class ArrayDeque<T> implements Iterable<T>, Deque<T> {
                 }
             }
             T ans = array[oldbacki];
-            resizelastrm(size - 1);
+            array[nlast] = null;
             size -= 1;
             nlast = size;
             return ans;
