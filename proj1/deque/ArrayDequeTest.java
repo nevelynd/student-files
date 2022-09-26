@@ -137,19 +137,14 @@ public class ArrayDequeTest {
     public void Test9() {
         ArrayDeque<Integer> ArrayDeque = new ArrayDeque<Integer>();
 
-        ArrayDeque.isEmpty();
-        ArrayDeque.addLast(1);
-        ArrayDeque.addLast(2);
-        ArrayDeque.addLast(3);
-        ArrayDeque.isEmpty();
-        ArrayDeque.isEmpty();
-        ArrayDeque.addLast(6);
-        ArrayDeque.isEmpty();
+
+        ArrayDeque.addFirst(2);
         ArrayDeque.removeLast();
-        ArrayDeque.addLast(9);
-        ArrayDeque.addLast(10);
+        ArrayDeque.addFirst(5);
+        ArrayDeque.addFirst(6);
         ArrayDeque.removeLast();
-}
+        ArrayDeque.removeLast();
+    }
 
     @Test
     public void Test00() {

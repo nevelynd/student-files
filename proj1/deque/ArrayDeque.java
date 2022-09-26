@@ -55,17 +55,11 @@ public class ArrayDeque<T> implements Iterable<T>, Deque<T> {
 
     private void resizelastrm(int cap) {
         T[] narray = (T[]) new Object[cap + 1];
-        if (size == 2) {
-            T temp = array[(nfirst + 2) % array.length];
-            array = (T[]) new Object[1];
-            array[0] = temp;
-        } else {
-            for (int i = 0; i < size - 1; i++) {
-                int a = (1 + nfirst + i) % array.length;
-                narray[i] = array[a];
-            }
-            array = narray;
+        for (int i = 0; i < size - 1; i++) {
+            int a = (1 + nfirst + i) % array.length;
+            narray[i] = array[a];
         }
+        array = narray;
         nfirst = cap;
     }
 
