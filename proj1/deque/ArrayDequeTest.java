@@ -266,10 +266,19 @@ public class ArrayDequeTest {
         ArrayDeque.addLast(8);
 
 
-
     }
 
+    @Test
+    public void Test03() {
+        ArrayDeque<Integer> ArrayDeque = new ArrayDeque<Integer>();
+        ArrayDeque.addFirst(0);
+        ArrayDeque.addFirst(1);
+        ArrayDeque.removeLast();
+        ArrayDeque.addFirst(3);
+        ArrayDeque.addFirst(4);
+        ArrayDeque.removeLast();
 
+    }
 }
 
 

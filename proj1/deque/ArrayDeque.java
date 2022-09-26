@@ -142,11 +142,18 @@ public class ArrayDeque<T> implements Iterable<T>, Deque<T> {
             resizelastrm(size);
             nlast = size;
         }
-        T ans = array[nlast - 1];
-        array[nlast - 1] = null;
+        int prev = nlast - 1;
+        if (prev < 0) {
+            prev = array.length - 1;
+        }
+        T ans = array[prev];
+        array[prev] = null;
 
         size -= 1;
         nlast -= 1;
+        if (nlast < 0) {
+            nlast = array.length - 1;
+        }
 
         return ans;
     }
