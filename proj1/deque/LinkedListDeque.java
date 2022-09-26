@@ -88,12 +88,13 @@ public class LinkedListDeque<T> implements Iterable<T>, Deque<T> {
     }
     public T get(int index) {
         IntNode p= sentinel.next;
-        T ans= p.next.item;
+        T ans= p.item;
 
         while(index<=size && index!=0){
-            ans=p.next.item;
+
             p=p.next;
             index-=1;
+            ans=p.item;
         }
         return ans;
     }

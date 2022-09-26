@@ -153,14 +153,17 @@ public class ArrayDequeTest {
     public void Test00() {
         ArrayDeque<Integer> ArrayDeque = new ArrayDeque<Integer>();
 ArrayDeque.addLast(0);
-        ArrayDeque.addLast(1);
-        ArrayDeque.addLast(2);
-        ArrayDeque.addLast(3);
-        ArrayDeque.addLast(4);
-        ArrayDeque.addLast(5);
-        ArrayDeque.removeFirst();
-        ArrayDeque.addLast(7);
-        ArrayDeque.removeFirst();
+        ArrayDeque.addFirst(1);
+        ArrayDeque.addFirst(2);
+        ArrayDeque.addFirst(3);
+        ArrayDeque.addFirst(4);
+        ArrayDeque.addFirst(5);
+        ArrayDeque.addFirst(6);
+        ArrayDeque.addFirst(7);
+        ArrayDeque.addFirst(8);
+        ArrayDeque.removeLast();
+        ArrayDeque.addFirst(10);
+        ArrayDeque.removeLast();
 }}
 
 
