@@ -38,12 +38,12 @@ public class GuitarString {
 
     public void tic() {
         if (buffer != null) {
-            for (int i = 0; i < buffer.size() - 2; i++) {
+
                 double rm = buffer.removeFirst();
-                double g = buffer.get(1 + i);
+                double g = buffer.get(0);
                 double a = DECAY * (.5 * (rm + g));
                 buffer.addLast(a);
-            }
+
         }
     }
 
