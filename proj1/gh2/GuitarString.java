@@ -45,12 +45,7 @@ public class GuitarString {
             buffer.removeFirst();
             buffer.addLast(r);
         }
-        for (int i = 0; i < buffer.size(); i++) {
-            double rm= buffer.removeFirst();
-            double  g =buffer.get(1+i);
-            double a=0.996*(.5*(rm+g));
-            buffer.addLast(a);
-    }}
+       }
 
     /* Advance the simulation one time step by performing one iteration of
      * the Karplus-Strong algorithm.
@@ -59,11 +54,17 @@ public class GuitarString {
         // TODO: Dequeue the front sample and enqueue a new sample that is
         //       the average of the two multiplied by the DECAY factor.
         //       **Do not call StdAudio.play().**
+        for (int i = 0; i < buffer.size(); i++) {
+            double rm= buffer.removeFirst();
+            double  g =buffer.get(1+i);
+            double a=0.996*(.5*(rm+g));
+            buffer.addLast(a);
+        }
     }
 
     /* Return the double at the front of the buffer. */
     public double sample() {
         // TODO: Return the correct thing.
-        return 0;
+        return buffer.get(0);
     }
 }

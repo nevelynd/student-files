@@ -140,4 +140,11 @@ public class LinkedListDequeTest {
         LinkedListDeque.addLast(3);
         LinkedListDeque.addLast(4);
         LinkedListDeque.getRecursive(1);
-}}
+}
+    @Test
+    public void LLDequeTest1() {
+        LinkedListDeque<Integer> LinkedListDeque = new LinkedListDeque<Integer>();
+
+LinkedListDeque.addFirst(0);
+        LinkedListDeque.addLast(1);
+        LinkedListDeque.get(1);}}

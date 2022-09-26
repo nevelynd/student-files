@@ -87,10 +87,12 @@ public class LinkedListDeque<T> implements Iterable<T>, Deque<T> {
         }
     }
     public T get(int index) {
-        T ans=sentinel.next.item;
+        IntNode p= sentinel.next;
+        T ans= null;
+
         while(index<=size && index!=0){
-            ans=sentinel.item;
-            sentinel=sentinel.next;
+            ans=p.next.item;
+            p=p.next;
             index-=1;
         }
         return ans;
@@ -113,10 +115,13 @@ public class LinkedListDeque<T> implements Iterable<T>, Deque<T> {
 
 
     public boolean equals(Object o){
-        if (o instanceof Deque<?>) {return true;
-            //Deque newe= (Deque) o;
-            //for (int i = 0; i < size; i++) {
-
+        if (o instanceof Deque<?>) {
+            Deque<T> newe= (Deque<T>) o;
+            if (size()!=newe.size()) {return false;}
+            for (int i = 0; i < size(); i++) {
+                if (!newe.get(i).equals(get(i))) {return false;}
+            }
+            return true;
 
 
 

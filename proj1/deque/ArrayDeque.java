@@ -167,9 +167,18 @@ public class ArrayDeque<T> implements Iterable<T>,Deque<T> {
 
     }
 
-    public boolean equals(Object o){return (o instanceof ArrayDeque<?> &&  array[0]==o)
-        ;
-    }
+    public boolean equals(Object o){
+        if (o instanceof Deque<?>) {
+            Deque<T> newe= (Deque<T>) o;
+            if (size()!=newe.size()) {return false;}
+            for (int i = 0; i < size(); i++) {
+                if (!newe.get(i).equals(get(i))) {return false;}
+            }
+            return true;
+
+
+
+        } return false;}
 
     public void printDeque(){
         T[] copy=  (T[]) new Object[size];;
