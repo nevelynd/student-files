@@ -148,4 +148,10 @@ public class LinkedListDequeTest {
 LinkedListDeque.addFirst(0);
         LinkedListDeque.addLast(1);
         assertEquals("Should have the same value", 1, (int)  LinkedListDeque.get(1));
-       }}
+       }
+    @Test
+    public void LLDequeTest3() {
+        int[][] a= new int[2][4];
+        int res= a.length;
+        int rest= a[1].length;
+    }}

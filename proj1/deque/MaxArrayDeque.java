@@ -10,8 +10,6 @@ public class MaxArrayDeque<T> extends ArrayDeque<T> {
     public MaxArrayDeque(Comparator<T> c) {
         comp = c;
     }
-
-
     public T max() {
         if (this.size() == 0) {
             return null;
@@ -37,10 +35,12 @@ public class MaxArrayDeque<T> extends ArrayDeque<T> {
     }
 
 
+
+
     public interface Comparator<T> {
         int compare(T o1, T o2);
     }
 
-    
+
 }
 
