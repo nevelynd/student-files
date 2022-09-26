@@ -79,7 +79,7 @@ public class ArrayDeque<T> implements Iterable<T>,Deque<T> {
         if (size==array.length){
             if (array.length==0) {array=(T[]) new Object[1];}
             else {resizef(array.length*2);}
-            //nlast=size;
+            nlast=size;
             nfirst=array.length-1;
         }
         array[nfirst]=item;
