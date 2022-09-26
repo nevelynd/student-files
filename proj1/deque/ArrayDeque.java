@@ -9,51 +9,21 @@ public class ArrayDeque<T> implements Iterable<T>, Deque<T> {
     private static final int EIGHT = 8;
     private static final int SIXTEEN = 16;
     private static final int FOUR = 4;
-
-
     private T[] array;
-
     public ArrayDeque() {
-
         array = (T[]) new Object[EIGHT];
         size = 0;
         nfirst = 0;
         nlast = 1;
-
-
     }
-
     public int size() {
         return size;
     }
-
     public boolean isEmpty() {
         return size == 0;
     }
 
-    private void resizebrm(int cap) {
-
-        T[] narray = (T[]) new Object[cap];
-        System.arraycopy(array, 0, narray, 0, cap);
-        array = narray;
-    }
-
-    private void resizef(int cap) {
-
-        T[] narray = (T[]) new Object[cap];
-        int b = 1;
-        if (nfirst == 0) {
-            b = 0;
-        }
-        for (int i = 0; i < size; i++) {
-            int a = (nfirst + i + b) % size;
-            narray[i] = array[a];
-        }
-        array = narray;
-        nfirst = cap - 1;
-    }
-
-    private void resizel(int cap) {
+    private void resize(int cap) {
         T[] narray = (T[]) new Object[cap];
         for (int i = 0; i < size; i++) {
             int a = (nfirst + i) % size;
@@ -63,30 +33,24 @@ public class ArrayDeque<T> implements Iterable<T>, Deque<T> {
         nfirst = cap - 1;
     }
 
-    private void resizefirstrm(int cap) {
-
-
+    private void resizel(int cap) {
         T[] narray = (T[]) new Object[cap];
-        if (size == 2) {
-            if (nfirst == 0) {
-                T temp = array[0];
-            } else {
-                T temp = array[(nfirst + 2) % array.length];
-                array = (T[]) new Object[1];
-                array[0] = temp;
-            }
-        } else {
-            int b = 2;
-            if (nfirst == 0) {
-                b = 1;
-            }
-            for (int i = 0; i < size - 1; i++) {
-                int a = (b + nfirst + i) % array.length;
-                narray[i] = array[a];
-            }
-            array = narray;
+        for (int i = 0; i < (size + 1); i++) {
+            int a = (nfirst + i + 1) % (size + 1);
+            narray[i] = array[a];
         }
-        nfirst = 0;
+        array = narray;
+        nfirst = cap - 1;
+    }
+
+    private void resizefirstrm(int cap) {
+        T[] narray = (T[]) new Object[cap+1];
+        for (int i = 0; i < size - 1; i++) {
+            int a = (nfirst + 2+ i) % array.length;
+            narray[i] = array[a];
+        }
+        array = narray;
+        nfirst = cap;
     }
 
     private void resizelastrm(int cap) {
@@ -100,41 +64,62 @@ public class ArrayDeque<T> implements Iterable<T>, Deque<T> {
                 int a = (1 + nfirst + i) % array.length;
                 narray[i] = array[a];
             }
-
-
             array = narray;
         }
         nfirst = 0;
     }
 
     public void addFirst(T item) {
-        if (size == array.length) {
-            if (array.length == 0) {
-                array = (T[]) new Object[1];
-            } else {
-                resizef(array.length * 2);
-            }
+        if (array.length == 0) {
+
+            array = (T[]) new Object[1];
+            array[nfirst] = item;
+            size += 1;
             nlast = size;
+        } else if (size == array.length) {
+
+            resize(array.length * 2);
+            array[nfirst] = item;
+            size += 1;
+            nlast = size;
+        } else if (size == array.length - 1) {
+                array[nfirst] = item;
+                size += 1;
+                resize(array.length * 2);
+                nlast = size;
+        } else {
+            array[nfirst] = item;
+            size += 1;
+            nfirst -= 1;
+            if (nfirst < 0) {
+                nfirst = array.length - 1;
+            }
+
         }
-        array[nfirst] = item;
-        nfirst = (nfirst - 1);
-        if (nfirst < 0) {
-            nfirst = array.length - 1;
-        }
-        size += 1;
+
     }
+
 
     public void addLast(T item) {
 
         if (array.length == 0) {
             array = (T[]) new Object[1];
             nlast = 0;
-        }
-        if (size == array.length) {
+            array[nlast] = item;
+        } else if (size == array.length) {
+            resize(array.length * 2);
+            nlast = size;
+            array[nlast] = item;
+            size += 1;
+        } else if (size == array.length - 1) {
+            array[nlast] = item;
             resizel(array.length * 2);
             nlast = size;
         }
-        array[nlast] = item;
+
+        else {
+            array[nlast] = item;
+        }
         size += 1;
         if (size != array.length) {
             nlast = (nlast + 1) % array.length;
@@ -144,14 +129,15 @@ public class ArrayDeque<T> implements Iterable<T>, Deque<T> {
     }
 
     public T removeFirst() {
+        //resizef(array.length);
         if (array.length >= SIXTEEN && size <= FOUR) {
-            resizebrm(array.length / 2);
+            resize(array.length / 2);
         }
         if (size != 0) {
             T res = array[(nfirst + 1) % array.length];
             resizefirstrm(size - 1);
             size -= 1;
-            nlast = array.length;
+            nlast = size;
             return res;
         }
         return null;
@@ -159,7 +145,7 @@ public class ArrayDeque<T> implements Iterable<T>, Deque<T> {
 
     public T removeLast() {
         if (array.length >= SIXTEEN && size <= FOUR) {
-            resizebrm(array.length / 2);
+            resize(array.length / 2);
         }
         if (size != 0) {
             int oldbacki;
@@ -175,19 +161,18 @@ public class ArrayDeque<T> implements Iterable<T>, Deque<T> {
             T ans = array[oldbacki];
             resizelastrm(size - 1);
             size -= 1;
-            nlast = array.length;
+            nlast = size;
             return ans;
         }
         return null;
     }
 
     public T get(int index) {
+        resize(size);
         if (index > (size - 1) && size != 1) {
             return null;
-        } else if (size == array.length && nfirst == 0 && nlast!=1) {
-            return array[((index + nfirst) % array.length)];
         } else {
-            return array[((index + nfirst + 1) % array.length)];
+            return array[((index + nfirst) % array.length)];
         }
     }
 

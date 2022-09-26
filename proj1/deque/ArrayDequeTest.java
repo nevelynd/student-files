@@ -152,7 +152,7 @@ public class ArrayDequeTest {
     @Test
     public void Test00() {
         ArrayDeque<Integer> ArrayDeque = new ArrayDeque<Integer>();
-ArrayDeque.addLast(0);
+        ArrayDeque.addFirst(0);
         ArrayDeque.addFirst(1);
         ArrayDeque.addFirst(2);
         ArrayDeque.addFirst(3);
@@ -161,10 +161,43 @@ ArrayDeque.addLast(0);
         ArrayDeque.addFirst(6);
         ArrayDeque.addFirst(7);
         ArrayDeque.addFirst(8);
-        ArrayDeque.removeLast();
+        ArrayDeque.addFirst(9);
         ArrayDeque.addFirst(10);
+        ArrayDeque.addFirst(11);
+        ArrayDeque.addFirst(12);
+        ArrayDeque.removeFirst();
+        ArrayDeque.addFirst(13);
         ArrayDeque.removeLast();
-}}
+}
+    @Test
+    public void Test01() {
+        ArrayDeque<Integer> ArrayDeque = new ArrayDeque<Integer>();
+        ArrayDeque.addLast(0);
+        ArrayDeque.addLast(1);
+        ArrayDeque.addLast(2);
+        ArrayDeque.addLast(3);
+        ArrayDeque.addLast(4);
+        ArrayDeque.addLast(5);
+        ArrayDeque.addLast(6);
+        ArrayDeque.addLast(7);
+        ArrayDeque.addLast(8);
+        ArrayDeque.addLast(9);
+        ArrayDeque.addLast(10);
+        ArrayDeque.addLast(11);
+        ArrayDeque.addLast(12);
+        ArrayDeque.removeFirst();
+        ArrayDeque.removeFirst();
+        ArrayDeque.removeFirst();
+        ArrayDeque.addLast(13);
+        ArrayDeque.removeLast();
+
+    }
+
+
+
+
+
+}
 
 
 
