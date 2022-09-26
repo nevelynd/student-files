@@ -41,9 +41,9 @@ public class ArrayDeque<T> implements Iterable<T>, Deque<T> {
     }
 
     private void resizefirstrm(int cap) {
-        T[] narray = (T[]) new Object[cap+1];
-        for (int i = 0; i < size - 1; i++) {
-            int a = (nfirst + 2+ i) % array.length;
+        T[] narray = (T[]) new Object[cap + 1];
+        for (int i = 0; i < size; i++) {
+            int a = (nfirst + 1 + i) % array.length;
             narray[i] = array[a];
         }
         array = narray;
@@ -52,7 +52,7 @@ public class ArrayDeque<T> implements Iterable<T>, Deque<T> {
 
     private void resizelastrm(int cap) {
         T[] narray = (T[]) new Object[cap + 1];
-        for (int i = 0; i < size - 1; i++) {
+        for (int i = 0; i < size; i++) {
             int a = (1 + nfirst + i) % array.length;
             narray[i] = array[a];
         }
@@ -74,10 +74,10 @@ public class ArrayDeque<T> implements Iterable<T>, Deque<T> {
             size += 1;
             nlast = size;
         } else if (size == array.length - 1) {
-                array[nfirst] = item;
-                size += 1;
-                resize(array.length * 2);
-                nlast = size;
+            array[nfirst] = item;
+            size += 1;
+            resize(array.length * 2);
+            nlast = size;
         } else {
             array[nfirst] = item;
             size += 1;
@@ -106,9 +106,7 @@ public class ArrayDeque<T> implements Iterable<T>, Deque<T> {
             array[nlast] = item;
             resizel(array.length * 2);
             nlast = size;
-        }
-
-        else {
+        } else {
             array[nlast] = item;
         }
         size += 1;
@@ -122,7 +120,7 @@ public class ArrayDeque<T> implements Iterable<T>, Deque<T> {
     public T removeFirst() {
         //resizef(array.length);
         if (array.length >= SIXTEEN && size <= FOUR) {
-            resize(size - 1);
+            resizefirstrm(size);
             nlast = size;
         }
         if (size != 0) {
@@ -136,28 +134,23 @@ public class ArrayDeque<T> implements Iterable<T>, Deque<T> {
     }
 
     public T removeLast() {
-        if (array.length >= SIXTEEN && size <= FOUR) {
-            resize(size - 1);
+        if (size == 0 || array.length == 0) {
+            return null;
         }
-        if (size != 0) {
-            int oldbacki;
-            oldbacki = nlast - 1;
 
-            if (oldbacki < 0) {
-                if (size != 1) {
-                    oldbacki = array.length - 1;
-                } else {
-                    oldbacki = 0;
-                }
-            }
-            T ans = array[oldbacki];
-            array[nlast - 1] = null;
-            size -= 1;
+        if (array.length >= SIXTEEN && size <= FOUR) {
+            resizelastrm(size);
             nlast = size;
-            return ans;
         }
-        return null;
+        T ans = array[nlast - 1];
+        array[nlast - 1] = null;
+
+        size -= 1;
+        nlast -= 1;
+
+        return ans;
     }
+
 
     public T get(int index) {
         if (index > (size - 1) && size != 1) {
