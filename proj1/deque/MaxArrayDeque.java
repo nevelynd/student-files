@@ -1,8 +1,5 @@
 package deque;
 
-import java.util.Iterator;
-
-
 public class MaxArrayDeque<T> extends ArrayDeque<T> {
 
     private Comparator<T> comp;
@@ -11,13 +8,16 @@ public class MaxArrayDeque<T> extends ArrayDeque<T> {
         comp = c;
     }
     public T max() {
-        if (this.size() == 0) {
+        if (size() == 0) {
             return null;
         } else {
-            T ans = this.get(0);
-            while (this.hasNext()) {
-                T cres = comp.compare(ans, this.next());
+            T ans = get(0);
+            while (iterator().hasNext()) {
+                T cres = comp.compare(ans, iterator().next());
+                ans = comp.compare(ans, cres);
             }
+            return ans;
+
         }
     }
 
@@ -26,11 +26,12 @@ public class MaxArrayDeque<T> extends ArrayDeque<T> {
         if (this.size() == 0) {
             return null;
         } else {
-            for (int i = 0; i < this.size(); i++) {
-                T cres = c.compare(this.get(0), this.next());
-
+            T ans = get(0);
+            while (iterator().hasNext()) {
+                T cres = c.compare(ans, iterator().next());
+                ans = c.compare(ans, cres);
             }
-
+            return ans;
         }
     }
 
@@ -38,7 +39,7 @@ public class MaxArrayDeque<T> extends ArrayDeque<T> {
 
 
     public interface Comparator<T> {
-        int compare(T o1, T o2);
+        T compare(T o1, T o2);
     }
 
 

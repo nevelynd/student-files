@@ -1,5 +1,6 @@
 package gh2;
 
+import deque.ArrayDeque;
 import deque.Deque;
 public class GuitarString {
     /** Constants. Do not change. In case you're curious, the keyword final
@@ -8,7 +9,7 @@ public class GuitarString {
     private static final int SR = 44100;      // Sampling Rate
     private static final double DECAY = .996; // energy decay factor
 
-    private Deque<Double> buffer;
+    private Deque<Double> buffer = new ArrayDeque<>();
 
     public GuitarString(double frequency) {
 

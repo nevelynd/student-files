@@ -1,4 +1,5 @@
 package deque;
+
 import java.util.Iterator;
 
 public class ArrayDeque<T> implements Iterable<T>, Deque<T> {
@@ -227,7 +228,7 @@ public class ArrayDeque<T> implements Iterable<T>, Deque<T> {
 
 
 
-    private class ArrayIter<E> implements Iterator<E> {
+    public class ArrayIter<E> implements Iterator<E> {
         private int iter = 0;
         public boolean hasNext() {
             return iter < size;
@@ -251,3 +252,8 @@ public class ArrayDeque<T> implements Iterable<T>, Deque<T> {
         T next();
     }
 }
+
+
+
+
+
