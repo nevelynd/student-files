@@ -21,7 +21,7 @@ public class GuitarString {
         //       cast the result of this division operation into an int. For
         //       better accuracy, use the Math.round() function before casting.
         //       Your should initially fill your buffer array with zeros.
-        double s=SR/frequency;
+        double s=Math.round(SR/frequency);
         int  ss= (int) s;
         for (int i = 0; i < ss; i++) {
             buffer.addFirst((double) 0);
@@ -39,6 +39,7 @@ public class GuitarString {
         //       other. This does not mean that you need to check that the numbers
         //       are different from each other. It means you should repeatedly call
         //       Math.random() - 0.5 to generate new random numbers for each array index.
+
         for (int i = 0; i < buffer.size(); i++) {
             double r = Math.random() - 0.5;
             buffer.removeFirst();
