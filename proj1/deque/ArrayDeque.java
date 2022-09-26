@@ -29,18 +29,20 @@ public class ArrayDeque<T> implements Iterable<T>,Deque<T> {
     private void resizef(int cap){
 
         T[] narray= (T[]) new Object[cap];
-            for (int i = 0; i < size; i++) {
-                int a=(nfirst+i+1)%size;
-                narray[i]=array[a];
+
+        for (int i = 0; i < size; i++) {
+            int a=(nfirst+i+1)%size;
+            narray[i]=array[a];
             }
             array=narray;
     }
 
     private void resizel(int cap){
-
+        int b =0;
+        if (nfirst==0) {b-=1; }
         T[] narray= (T[]) new Object[cap];
         for (int i = 0; i < size; i++) {
-            int a=(nlast+i)%size;
+            int a=(nfirst+i)%size;
             narray[i]=array[a];
         }
         array=narray;
@@ -92,19 +94,17 @@ public class ArrayDeque<T> implements Iterable<T>,Deque<T> {
     public void addLast(T item) {
         if ((array.length!=1||size!=0)&&size!=array.length) {
             array[nlast] = item;
-            nlast = (nlast+1) % array.length;
         }
         if (array.length==0) {
             array=(T[]) new Object[1];
             nlast=0;
             array[nlast]=item;
-            nlast=(nlast+1);
+
         }
         if (size==array.length) {
             resizel(array.length*2);
             nlast=size;
             array[nlast]=item;
-            nlast=(nlast+1);
             nfirst=array.length-1;
             if (nfirst<0) {
                 if (size==array.length) {nfirst=0;}
@@ -113,6 +113,9 @@ public class ArrayDeque<T> implements Iterable<T>,Deque<T> {
 
 
         size+=1;
+        if (size!=array.length)
+        nlast=(nlast+1)%array.length;
+        else  {nlast=(nlast+1);}
         }
 
 
@@ -127,8 +130,8 @@ public class ArrayDeque<T> implements Iterable<T>,Deque<T> {
 
 
             resizefirstrm(size-1);
-            nfirst=array.length-1;
-            if (nfirst<0) {nfirst=0;}
+            nfirst=0;
+
             size-=1;
             nlast=(nlast-1);
             if (nlast<0){

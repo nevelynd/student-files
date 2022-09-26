@@ -147,6 +147,20 @@ public class ArrayDequeTest {
         ArrayDeque.addLast(6);
             ArrayDeque.addLast(8);
             ArrayDeque.removeFirst();
+}
+
+    @Test
+    public void Test00() {
+        ArrayDeque<Integer> ArrayDeque = new ArrayDeque<Integer>();
+ArrayDeque.addLast(0);
+        ArrayDeque.addLast(1);
+        ArrayDeque.addLast(2);
+        ArrayDeque.addLast(3);
+        ArrayDeque.addLast(4);
+        ArrayDeque.addLast(5);
+        ArrayDeque.removeFirst();
+        ArrayDeque.addLast(7);
+        ArrayDeque.removeFirst();
 }}
 
 
