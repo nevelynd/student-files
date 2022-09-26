@@ -63,10 +63,10 @@ public class ArrayDeque<T> implements Iterable<T>,Deque<T> {
     private void resizelastrm(int cap){
         if (size==1) {array=(T[]) new Object[0];}
         else{T[] narray= (T[]) new Object[cap];
-            if (size==2) {T temp=array[(nfirst+3)%array.length];
+            if (size==2) {T temp=array[(nfirst+2)%array.length];
                 array=(T[]) new Object[1];
                 array[0]=temp;}
-        else{for (int i = 0; i < size-1; i++) {
+       else { for (int i = 0; i < size-1; i++) {
             int a = (1 + nfirst + i) % array.length;
             narray[i] = array[a];}
 
@@ -79,7 +79,7 @@ public class ArrayDeque<T> implements Iterable<T>,Deque<T> {
         if (size==array.length){
             if (array.length==0) {array=(T[]) new Object[1];}
             else {resizef(array.length*2);}
-            nlast=size;
+            //nlast=size;
             nfirst=array.length-1;
         }
         array[nfirst]=item;
@@ -150,13 +150,11 @@ public class ArrayDeque<T> implements Iterable<T>,Deque<T> {
             T ans= array[oldbacki];
            resizelastrm(size-1);
             size-=1;
-            if (size!=0) {nfirst=array.length-1;}
+            if (size!=0) {nfirst=0;}
 
 
-            nlast=(nlast-1);
-            if (nlast<0){
-                if (size==array.length) {nlast=0;}
-                else{nlast=array.length;}}
+
+            nlast=array.length;
             return ans;}
         return null;}
 
