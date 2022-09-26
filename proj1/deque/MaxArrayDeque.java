@@ -13,9 +13,9 @@ public class MaxArrayDeque<T> extends ArrayDeque<T> {
         } else {
             T ans = get(0);
             while (iterator().hasNext()) {
-                int cres = comp.compare(ans, iterator().next());
-
-                ans = comp.compare(ans, crest);
+                if (comp.compare(ans, iterator().next()) == 1) {
+                    ans = iterator().next();
+                }
 
             }
             return ans;
@@ -30,8 +30,9 @@ public class MaxArrayDeque<T> extends ArrayDeque<T> {
         } else {
             T ans = get(0);
             while (iterator().hasNext()) {
-                T cres = c.compare(ans, iterator().next());
-                ans = c.compare(ans, cres);
+                if (c.compare(ans, iterator().next()) == 1) {
+                    ans = iterator().next();
+                }
             }
             return ans;
         }

@@ -123,12 +123,13 @@ public class ArrayDeque<T> implements Iterable<T>, Deque<T> {
         //resizef(array.length);
         if (array.length >= SIXTEEN && size <= FOUR) {
             resize(size - 1);
+            nlast = size;
         }
         if (size != 0) {
             T res = array[(nfirst + 1) % array.length];
-            array[nfirst] = null;
+            array[(nfirst + 1) % array.length] = null;
+            nfirst = (nfirst + 1) % array.length;
             size -= 1;
-            nlast = size;
             return res;
         }
         return null;
@@ -150,7 +151,7 @@ public class ArrayDeque<T> implements Iterable<T>, Deque<T> {
                 }
             }
             T ans = array[oldbacki];
-            array[nlast] = null;
+            array[nlast - 1] = null;
             size -= 1;
             nlast = size;
             return ans;
