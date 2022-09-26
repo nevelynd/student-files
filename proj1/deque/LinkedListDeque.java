@@ -23,111 +23,105 @@ public class LinkedListDeque<T> implements Iterable<T>, Deque<T> {
             IntNode temp = sentinel.next;
             sentinel.next = new IntNode(sentinel, item, sentinel.next);
             temp.prev = sentinel.next;
-        }
-
-        else {
+        } else {
             sentinel.next = new IntNode(sentinel, item, sentinel);
             sentinel.prev = sentinel.next;
         }
         size += 1;
     }
-    public void addLast(T item){
-        if(sentinel.prev!=null){
-            IntNode temp=sentinel.prev;
-            sentinel.prev=new IntNode(sentinel.prev,item,sentinel);
-            temp.next=sentinel.prev;
+    public void addLast(T item) {
+        if (sentinel.prev != null) {
+            IntNode temp = sentinel.prev;
+            sentinel.prev = new IntNode(sentinel.prev, item, sentinel);
+            temp.next = sentinel.prev;
+        } else {
+            sentinel.prev = new IntNode(sentinel, item, sentinel);
+            sentinel.next = sentinel.prev;
         }
-        else{
-            sentinel.prev=new IntNode(sentinel,item,sentinel);
-            sentinel.next=sentinel.prev;
-        }
-        size+=1;
+        size += 1;
     }
-    public boolean isEmpty(){
-        if(size==0){return true;}
-        else{return false;}
+    public boolean isEmpty() {
+        return size == 0;
     }
-    public int size(){
+    public int size() {
         return size;
     }
-    public void printDeque(){
-        int count=size;
-        String res="";
-        if(size==0){res=" ";}
-        while(size!=0&&count>=0&&sentinel.item!=null){
-            res+=sentinel.item+ " ";
-            sentinel=sentinel.next;
-            count-=1;
+    public void printDeque()  {
+        int count = size;
+        String res = "";
+        if (size == 0) {
+            res = " ";
         }
-            System.out.println(res);
+        while (size != 0 && count >= 0 && sentinel.item != null) {
+            res += sentinel.item + " ";
+            sentinel = sentinel.next;
+            count -= 1;
+        }
+        System.out.println(res);
     }
     public T removeFirst() {
-        if (size == 0 || sentinel.next == null) {return null;}
-        else {
-
-            size-=1;
-            T res=sentinel.next.item;
-            sentinel.next=sentinel.next.next;
-            sentinel.next.prev=sentinel;
-
-
+        if (size == 0 || sentinel.next == null) {
+            return null;
+        } else {
+            size -= 1;
+            T res = sentinel.next.item;
+            sentinel.next = sentinel.next.next;
+            sentinel.next.prev = sentinel;
             return res;
         }
     }
     public T removeLast() {
-        if (size ==0 || sentinel.prev == null) { return null;}
-        else{
+        if (size == 0 || sentinel.prev == null) {
+            return null;
+        } else {
             size -= 1;
             IntNode oldback = sentinel.prev;
             IntNode newback = oldback.prev;
-
-            sentinel.prev=newback;
-            newback.next=sentinel;
+            sentinel.prev = newback;
+            newback.next = sentinel;
             return oldback.item;
         }
     }
     public T get(int index) {
-        IntNode p= sentinel.next;
-        T ans= p.item;
-
-        while(index<=size && index!=0){
-
-            p=p.next;
-            index-=1;
-            ans=p.item;
+        IntNode p = sentinel.next;
+        T ans = p.item;
+        while (index <= size && index != 0) {
+            p = p.next;
+            index -= 1;
+            ans = p.item;
         }
         return ans;
     }
-    private T helper (IntNode p, int index){
-
-        if(index<0){return null;}
-        else if(index==0){ return p.item;}
-
-        p=p.next;
+    private T helper(IntNode p, int index) {
+        if (index < 0) {
+            return null;
+        }  else if (index == 0) {
+            return p.item;
+        }
+        p = p.next;
         index -= 1;
         return helper(p, index);
     }
-    public T getRecursive(int index){
-
+    public T getRecursive(int index) {
         IntNode p = sentinel.next;
-        T ans =helper(p, index);
+        T ans = helper(p, index);
         return ans;
     }
-
-
-    public boolean equals(Object o){
+    public boolean equals(Object o) {
         if (o instanceof Deque<?>) {
-            Deque<T> newe= (Deque<T>) o;
-            if (size()!=newe.size()) {return false;}
+            Deque<T> newe = (Deque<T>) o;
+            if (size() != newe.size()) {
+                return false;
+            }
             for (int i = 0; i < size(); i++) {
-                if (!newe.get(i).equals(get(i))) {return false;}
+                if (!newe.get(i).equals(get(i))) {
+                    return false;
+                }
             }
             return true;
-
-
-
-    } return false;}
-
+        }
+        return false;
+    }
     public Iterator<T> iterator() {
         return null;
     }
