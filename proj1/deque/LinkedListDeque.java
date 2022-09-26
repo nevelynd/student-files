@@ -123,7 +123,7 @@ public class LinkedListDeque<T> implements Iterable<T>, Deque<T> {
         return false;
     }
 
-    public class LLIter<E> implements Iterator<E> {
+    private class LLIter<E> implements Iterator<E> {
         private IntNode iter = sentinel.next;
         public boolean hasNext() {
             return iter.next != null;
@@ -140,7 +140,7 @@ public class LinkedListDeque<T> implements Iterable<T>, Deque<T> {
         return new LLIter<T>();
     }
 
-    public interface Iterable<T> {
+    private interface Iterable<T> {
         boolean hasNext();
 
         T next();

@@ -6,9 +6,9 @@ public class ArrayDeque<T> implements Iterable<T>, Deque<T> {
     private int size;
     private int nfirst;
     private int nlast;
-    public static final int EIGHT = 8;
-    public static final int SIXTEEN = 16;
-    public static final int FOUR = 4;
+    private static final int EIGHT = 8;
+    private static final int SIXTEEN = 16;
+    private static final int FOUR = 4;
 
 
     private T[] array;
@@ -184,7 +184,7 @@ public class ArrayDeque<T> implements Iterable<T>, Deque<T> {
     public T get(int index) {
         if (index > (size - 1) && size != 1) {
             return null;
-        } else if (size == array.length && nfirst == 0) {
+        } else if (size == array.length && nfirst == 0 && nlast!=1) {
             return array[((index + nfirst) % array.length)];
         } else {
             return array[((index + nfirst + 1) % array.length)];
@@ -228,7 +228,7 @@ public class ArrayDeque<T> implements Iterable<T>, Deque<T> {
 
 
 
-    public class ArrayIter<E> implements Iterator<E> {
+    private class ArrayIter<E> implements Iterator<E> {
         private int iter = 0;
         public boolean hasNext() {
             return iter < size;
@@ -246,7 +246,7 @@ public class ArrayDeque<T> implements Iterable<T>, Deque<T> {
     }
 
 
-    public interface Iterable<T> {
+    private interface Iterable<T> {
         boolean hasNext();
 
         T next();
