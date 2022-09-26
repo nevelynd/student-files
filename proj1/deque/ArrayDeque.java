@@ -19,9 +19,6 @@ public class ArrayDeque<T> implements Iterable<T>, Deque<T> {
     public int size() {
         return size;
     }
-    public boolean isEmpty() {
-        return size == 0;
-    }
 
     private void resize(int cap) {
         T[] narray = (T[]) new Object[cap];

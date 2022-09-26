@@ -40,9 +40,6 @@ public class LinkedListDeque<T> implements Iterable<T>, Deque<T> {
         }
         size += 1;
     }
-    public boolean isEmpty() {
-        return size == 0;
-    }
     public int size() {
         return size;
     }
@@ -126,9 +123,14 @@ public class LinkedListDeque<T> implements Iterable<T>, Deque<T> {
     private class LLIter<E> implements Iterator<E> {
         private IntNode iter = sentinel.next;
         public boolean hasNext() {
-            return iter.next != null;
-        }
 
+            if (iter == null || iter == sentinel) {
+                return false;
+            } else {
+                return iter.next != null;
+            }
+
+        }
         public E next() {
             E res = (E) iter.item;
             iter = iter.next;
