@@ -39,10 +39,10 @@ public class GuitarString {
     public void tic() {
         if (buffer != null) {
 
-                double rm = buffer.removeFirst();
-                double g = buffer.get(0);
-                double a = DECAY * (.5 * (rm + g));
-                buffer.addLast(a);
+            double rm = buffer.removeFirst();
+            double g = buffer.get(0);
+            double a = DECAY * (.5 * (rm + g));
+            buffer.addLast(a);
 
         }
     }
