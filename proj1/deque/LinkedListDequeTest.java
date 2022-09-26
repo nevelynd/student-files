@@ -147,4 +147,5 @@ public class LinkedListDequeTest {
 
 LinkedListDeque.addFirst(0);
         LinkedListDeque.addLast(1);
-        LinkedListDeque.get(1);}}
+        assertEquals("Should have the same value", 1, (int)  LinkedListDeque.get(1));
+       }}

@@ -175,9 +175,6 @@ public class ArrayDeque<T> implements Iterable<T>,Deque<T> {
                 if (!newe.get(i).equals(get(i))) {return false;}
             }
             return true;
-
-
-
         } return false;}
 
     public void printDeque(){
