@@ -214,12 +214,10 @@ public class ArrayDeque<T> implements Iterable<T>, Deque<T> {
     }
 
 
-    public Iterator<T> iterator() {
-        return null;
-        //boolean hasNext();
-        //T next();
-
-
-
+    public boolean hasNext() { return size!=0; }
+    public T next() {
+        removeFirst();
+        return get(0);
     }
+
 }
