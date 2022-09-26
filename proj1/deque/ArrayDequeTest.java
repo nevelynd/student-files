@@ -116,9 +116,10 @@ public class ArrayDequeTest {
         ArrayDeque<Integer> ArrayDeque = new ArrayDeque<Integer>();
 
         ArrayDeque.addLast(0);
-        ArrayDeque.removeFirst();
+        assertEquals("i", (int) ArrayDeque.get(0), 0);
+        ArrayDeque.addLast(1);
         ArrayDeque.addLast(2);
-        ArrayDeque.addLast(3);
+        assertEquals("i", 1,  (int) ArrayDeque.get(1));
     }
 
     @Test
@@ -136,17 +137,18 @@ public class ArrayDequeTest {
     public void Test9() {
         ArrayDeque<Integer> ArrayDeque = new ArrayDeque<Integer>();
 
-    ArrayDeque.addFirst(0);
-            ArrayDeque.addFirst(1);
-            ArrayDeque.addLast(2);
-            ArrayDeque.get(0);
-            ArrayDeque.removeLast();
-
-            ArrayDeque.removeLast();
-        ArrayDeque.addFirst(5);
+        ArrayDeque.isEmpty();
+        ArrayDeque.addLast(1);
+        ArrayDeque.addLast(2);
+        ArrayDeque.addLast(3);
+        ArrayDeque.isEmpty();
+        ArrayDeque.isEmpty();
         ArrayDeque.addLast(6);
-            ArrayDeque.addLast(8);
-            ArrayDeque.removeFirst();
+        ArrayDeque.isEmpty();
+        ArrayDeque.removeLast();
+        ArrayDeque.addLast(9);
+        ArrayDeque.addLast(10);
+        ArrayDeque.removeLast();
 }
 
     @Test

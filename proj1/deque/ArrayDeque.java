@@ -54,7 +54,7 @@ public class ArrayDeque<T> implements Iterable<T>, Deque<T> {
     }
 
     private void resizelastrm(int cap) {
-        T[] narray = (T[]) new Object[cap];
+        T[] narray = (T[]) new Object[cap + 1];
         if (size == 2) {
             T temp = array[(nfirst + 2) % array.length];
             array = (T[]) new Object[1];
@@ -66,7 +66,7 @@ public class ArrayDeque<T> implements Iterable<T>, Deque<T> {
             }
             array = narray;
         }
-        nfirst = 0;
+        nfirst = cap;
     }
 
     public void addFirst(T item) {
@@ -168,11 +168,10 @@ public class ArrayDeque<T> implements Iterable<T>, Deque<T> {
     }
 
     public T get(int index) {
-        resize(size);
         if (index > (size - 1) && size != 1) {
             return null;
         } else {
-            return array[((index + nfirst) % array.length)];
+            return array[((index + nfirst + 1) % array.length)];
         }
     }
 
