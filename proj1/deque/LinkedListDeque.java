@@ -122,12 +122,29 @@ public class LinkedListDeque<T> implements Iterable<T>, Deque<T> {
         }
         return false;
     }
-    public boolean hasNext() { return sentinel.next != null; }
-    public T next() {
 
-        return sentinel.next.item;
+    private class ArrayIter<E> implements Iterator<E> {
+        private IntNode iter = sentinel.next;
+        public boolean hasNext() {
+            return iter.next != null;
+        }
+
+        public E next() {
+            E res = (E) iter.item;
+            iter = iter.next;
+            return res;
+        }
     }
 
+    public Iterator<T> iterator() {
+        return new ArrayIter<T>();
+    }
+
+    public interface Iterable<T> {
+        boolean hasNext();
+
+        T next();
+    }
 }
 
 

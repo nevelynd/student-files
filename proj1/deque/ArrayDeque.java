@@ -9,7 +9,9 @@ public class ArrayDeque<T> implements Iterable<T>, Deque<T> {
     public static final int SIXTEEN = 16;
     public static final int FOUR = 4;
 
+
     private T[] array;
+
     public ArrayDeque() {
 
         array = (T[]) new Object[EIGHT];
@@ -19,10 +21,14 @@ public class ArrayDeque<T> implements Iterable<T>, Deque<T> {
 
 
     }
+
     public int size() {
-        return size; }
+        return size;
+    }
+
     public boolean isEmpty() {
-        return size == 0; }
+        return size == 0;
+    }
 
     private void resizebrm(int cap) {
 
@@ -45,6 +51,7 @@ public class ArrayDeque<T> implements Iterable<T>, Deque<T> {
         array = narray;
         nfirst = cap - 1;
     }
+
     private void resizel(int cap) {
         T[] narray = (T[]) new Object[cap];
         for (int i = 0; i < size; i++) {
@@ -52,7 +59,9 @@ public class ArrayDeque<T> implements Iterable<T>, Deque<T> {
             narray[i] = array[a];
         }
         array = narray;
-        nfirst = cap - 1; }
+        nfirst = cap - 1;
+    }
+
     private void resizefirstrm(int cap) {
 
 
@@ -72,7 +81,8 @@ public class ArrayDeque<T> implements Iterable<T>, Deque<T> {
             }
             for (int i = 0; i < size - 1; i++) {
                 int a = (b + nfirst + i) % array.length;
-                narray[i] = array[a]; }
+                narray[i] = array[a];
+            }
             array = narray;
         }
         nfirst = 0;
@@ -112,6 +122,7 @@ public class ArrayDeque<T> implements Iterable<T>, Deque<T> {
         }
         size += 1;
     }
+
     public void addLast(T item) {
 
         if (array.length == 0) {
@@ -144,6 +155,7 @@ public class ArrayDeque<T> implements Iterable<T>, Deque<T> {
         }
         return null;
     }
+
     public T removeLast() {
         if (array.length >= SIXTEEN && size <= FOUR) {
             resizebrm(array.length / 2);
@@ -174,7 +186,7 @@ public class ArrayDeque<T> implements Iterable<T>, Deque<T> {
         } else if (size == array.length && nfirst == 0) {
             return array[((index + nfirst) % array.length)];
         } else {
-            return array[((index + nfirst  + 1) % array.length)];
+            return array[((index + nfirst + 1) % array.length)];
         }
     }
 
@@ -205,7 +217,7 @@ public class ArrayDeque<T> implements Iterable<T>, Deque<T> {
         }
         while (size != 0 && copy != null) {
             res += copy[i] + " ";
-            T[] narray =  (T[]) new Object[size - 1];
+            T[] narray = (T[]) new Object[size - 1];
             System.arraycopy(array, 1, narray, 0, size - 1);
             count -= 1;
             i += 1;
@@ -214,10 +226,28 @@ public class ArrayDeque<T> implements Iterable<T>, Deque<T> {
     }
 
 
-    public boolean hasNext() { return size!=0; }
-    public T next() {
-        removeFirst();
-        return get(0);
+
+    private class ArrayIter<E> implements Iterator<E> {
+        private int iter = 0;
+        public boolean hasNext() {
+            return iter < size;
+        }
+
+        public E next() {
+            E res = (E) get(iter);
+            iter += 1;
+            return res;
+        }
     }
 
+    public Iterator<T> iterator() {
+        return new ArrayIter<T>();
+    }
+
+
+    public interface Iterable<T> {
+        boolean hasNext();
+
+        T next();
+    }
 }
