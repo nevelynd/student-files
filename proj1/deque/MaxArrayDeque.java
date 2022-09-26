@@ -12,8 +12,9 @@ public class MaxArrayDeque<T> extends ArrayDeque<T> {
         if (size() == 0) {
             return null;
         } else {
-            T ans = get(0);
             Iterator<T> i = iterator();
+            T ans = i.next();
+
             while (i.hasNext()) {
                 T temp =  i.next();
                 if (comp.compare(ans, temp) == -1) {
@@ -31,8 +32,8 @@ public class MaxArrayDeque<T> extends ArrayDeque<T> {
         if (this.size() == 0) {
             return null;
         } else {
-            T ans = get(0);
             Iterator<T> i = iterator();
+            T ans = i.next();
             while (i.hasNext()) {
                 T temp =  i.next();
                 if (c.compare(ans, temp) == -1) {

@@ -2,28 +2,33 @@ package deque;
 import org.junit.Test;
 
 
-import java.util.Comparator;
 
 import static org.junit.Assert.*;
 
 
 
-public class MaxArrayDequeTest {
+public class MaxArrayDequeTest<T> {
     @Test
     public void Test1() {
-        //Comparator<Integer> cc = Math.max();
-        //MaxArrayDeque<Integer> ad1 = new MaxArrayDeque<Integer>(cc);
+        //Comparators<T> cc = maxx();
+        MaxArrayDeque<Integer> ad1 = new MaxArrayDeque<Integer>(null);
 
 
     }
 
 
-    public int maxx(int x, int y) {
-        if (x < y) {
-            return -1;
-
-
+    private class Comparatorr<E> {
+        public int maxx(int x, int y) {
+            if (x < y) {
+                return 1;
+            }
+            if (x > y) {
+                return -1;
+            } else {
+                return 0;
+            }
         }
-        else { return 1;}
+
     }
+
 }
