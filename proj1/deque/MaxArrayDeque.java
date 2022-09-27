@@ -17,7 +17,7 @@ public class MaxArrayDeque<T> extends ArrayDeque<T> {
 
             while (i.hasNext()) {
                 T temp =  i.next();
-                if (comp.compare(ans, temp) == -1) {
+                if (comp.compare(ans, temp) < 0) {
                     ans = temp;
                 }
 
@@ -36,7 +36,7 @@ public class MaxArrayDeque<T> extends ArrayDeque<T> {
             T ans = i.next();
             while (i.hasNext()) {
                 T temp =  i.next();
-                if (c.compare(ans, temp) == -1) {
+                if (c.compare(ans, temp) < 0) {
                     ans = temp;
                 }
 

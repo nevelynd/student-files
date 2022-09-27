@@ -23,7 +23,7 @@ public class MaxArrayDequeTest<T> {
 
 
     }
-   
+
 }
 public static class NameComparator implements Comparator<Integer> {
     public int compare(int x, int y) {
