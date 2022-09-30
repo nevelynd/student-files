@@ -4,15 +4,19 @@ ArrayDeque:
 
 Q: Give an example of at least one idea from the staff solution that would have made your solution better (if any).
 
-A: 
+A: created a method called wrapindex that would account for if we decrement out index and still had open
+spots in our array, we would wrap it around. For my code I would do if cases each time which made my code longer
+and more complicated.
 
 Q: What's something you felt proud of in your code, if anything?
 
-A:
+A: I'm proud I was able to understand the concept of resizing our array when needing to add more or remove items
+so seeing my code work as intended through the java visualizer felt great.
 
 Q: What's something that was particularly inelegant in your code, if anything?
 
-A:
+A: I had multiple resize functions and did not use get in them so when getting the new fronts and last
+of my array I had different methods resulting in different functions for my resizing.
 
 Q: What did you learn by talking to your partner about writing ArrayDeque?
 
@@ -20,7 +24,8 @@ A:
 
 Q: What do you wish you would have known before writing ArrayDeque, if anything?
 
-A:
+A: I had misinterpreted the resizing and thought we had to resize each time we removed an item so I kept on
+running into a runtime issue.
 
 Q: If you wrote ArrayDeque again, what would you do differently, if anything?
 
@@ -32,15 +37,17 @@ LinkedListDeque:
 
 Q: Give an example of at least one idea from the staff solution that would have made your solution better (if any).
 
-A: 
+A: initializing my sentinel to point at itself rather than setting all prev, next, and item as null as I did
+since it would simplify my adding and removing cases where I would have to check if the value was null.
 
 Q: What's something you felt proud of in your code, if anything?
 
-A:
+A: When I was finally able to construct all my points correctly due to my sentinel and next/prev methods.
 
 Q: What's something that was particularly inelegant in your code, if anything?
 
-A:
+A: My code is kind of jumbled so I dont set variables to my new node and instead start changing the pointers to next
+and prev, making it kind of confusing to understand at a glance.
 
 Q: What did you learn by talking to your partner about writing LinkedListDeque?
 
@@ -52,7 +59,7 @@ A:
 
 Q: If you wrote LinkedListDeque again, what would you do differently, if anything?
 
-A:
+A: set my sentinel to point at itself
 
 -----
 
@@ -60,4 +67,4 @@ Meta:
 
 Q: Did you like this design review process? Anything we should do differently next time?
 
-A: 
+A: Yes
