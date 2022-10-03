@@ -12,13 +12,16 @@ public class PercolationStats {
         }
         totalsites = N * N;
         thresholds = new int[T];
-        Percolation perc = pf.make(N);
         for (int i = 0;  i <  T; i++) {
-            int randomx = StdRandom.uniform(N);
-            int randomy = StdRandom.uniform(N);
-            perc.open(randomx, randomy);
-            T -= 1;
+            Percolation perc = pf.make(N);
+            while (!perc.percolates()) {
+                int randomx = StdRandom.uniform(N);
+                int randomy = StdRandom.uniform(N);
+                perc.open(randomx, randomy);
+            }
             thresholds[i] = (perc.numberOfOpenSites() / (N * N));
+            T -= 1;
+
         }
     }
     // perform T independent experiments on an N-by-N grid

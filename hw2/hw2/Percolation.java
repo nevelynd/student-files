@@ -1,6 +1,5 @@
 package hw2;
 
-import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.WeightedQuickUnionUF;
 
 public class Percolation {
@@ -12,7 +11,7 @@ public class Percolation {
     private int bottomsite;
     private int opensites = 0;
 
-    public WeightedQuickUnionUF table;
+    private WeightedQuickUnionUF table;
     public Percolation(int N) {
 
         if (N <= 0) {
@@ -54,7 +53,7 @@ public class Percolation {
         if (row >= boolgrid.length || row < 0 || col >= boolgrid.length || col < 0) {
             throw new IndexOutOfBoundsException();
         }
-        if (!isOpen(row,col)) {
+        if (!isOpen(row, col)) {
             boolgrid[row][col] = true;
             opensites += 1;
             if (row == 0) {
