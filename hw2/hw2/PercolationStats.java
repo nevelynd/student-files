@@ -20,7 +20,7 @@ public class PercolationStats {
                 perc.open(randomx, randomy);
             }
             thresholds[i] = (perc.numberOfOpenSites() / (N * N));
-            T -= 1;
+           
 
         }
     }

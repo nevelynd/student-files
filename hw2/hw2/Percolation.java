@@ -108,6 +108,9 @@ public class Percolation {
         if (row >= boolgrid.length || row < 0 || col >= boolgrid.length || col < 0) {
             throw new IndexOutOfBoundsException();
         }
+        if (table.connected(topsite, bottomsite)) {
+            return false;
+        }
 
         if (table.connected(topsite, xyto1d(row, col))) {
             return true;
