@@ -4,7 +4,7 @@ import edu.princeton.cs.algs4.StdRandom;
 public class PercolationStats {
     private int totalsites;
     private int[] thresholds;
-    public static final double MULT =  1.96;
+    private static final double MULT =  1.96;
 
     public PercolationStats(int N, int T, PercolationFactory pf) {
         if (N <= 0 || T <= 0) {

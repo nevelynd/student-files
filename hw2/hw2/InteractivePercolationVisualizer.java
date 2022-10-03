@@ -50,8 +50,11 @@ public class InteractivePercolationVisualizer {
                     if (!perc.isOpen(i, j)) {
                         StdOut.println(i + " " + j);
                     }
+
                     perc.open(i, j);
+
                 }
+
 
                 // draw N-by-N percolation system
                 PercolationVisualizer.draw(perc, N);

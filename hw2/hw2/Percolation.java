@@ -1,5 +1,6 @@
 package hw2;
 
+import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.WeightedQuickUnionUF;
 
 public class Percolation {
@@ -11,7 +12,7 @@ public class Percolation {
     private int bottomsite;
     private int opensites = 0;
 
-    WeightedQuickUnionUF table;
+    public WeightedQuickUnionUF table;
     public Percolation(int N) {
 
         if (N <= 0) {
@@ -20,7 +21,17 @@ public class Percolation {
         intgrid = new int[N][N];
         boolgrid = new boolean[N][N];
         isfullgrid = new boolean[N][N];
+        int num  = 0;
+        for (int r = 0; r < intgrid.length; r++) {
+            for (int c = 0; c < intgrid.length; c++) {
+                intgrid[r][c] = num;
+                num += 1;
+                boolgrid[r][c] = false;
+                isfullgrid[r][c] = false;
 
+
+            }
+        }
 
         table = (WeightedQuickUnionUF) new WeightedQuickUnionUF(N * N + 2);
         topsite = N * N;
@@ -28,18 +39,7 @@ public class Percolation {
 
     }
     // create N-by-N grid, with all sites initially blocked
-    private void xygrid() {
-        int num  = 0;
-        for (int r = 0; r < intgrid.length; r++) {
-            for (int c = 0; c < intgrid.length; c++) {
-                intgrid[r][c] = num;
-                boolgrid[r][c] = false;
-                isfullgrid[r][c] = false;
-                num += 1;
 
-            }
-        }
-    }
     private int xyto1d(int row, int col) {
         if (row >= boolgrid.length || row < 0 || col >= boolgrid.length || col < 0) {
             throw new IndexOutOfBoundsException();
@@ -54,16 +54,15 @@ public class Percolation {
         if (row >= boolgrid.length || row < 0 || col >= boolgrid.length || col < 0) {
             throw new IndexOutOfBoundsException();
         }
-        if (!boolgrid[row][col]) {
+        if (!isOpen(row,col)) {
             boolgrid[row][col] = true;
             opensites += 1;
             if (row == 0) {
-                table.union(xyto1d(row, col), topsite);
                 isfullgrid[row][col] = true;
+                table.union(topsite, xyto1d(row, col));
+
             }
-            if (col == boolgrid.length) {
-                table.union(xyto1d(row, col), bottomsite);
-            }
+
             if ((col + 1 < boolgrid.length) && isOpen(row, col + 1)) {
                 table.union(xyto1d(row, col), xyto1d(row, col + 1));
             }
@@ -71,18 +70,25 @@ public class Percolation {
                 table.union(xyto1d(row, col), xyto1d(row, col - 1));
             }
             if ((row - 1 >= 0) && isOpen(row - 1, col)) {
-                table.union(xyto1d(row, col), xyto1d(row - 1, col));
+                table.union(xyto1d(row - 1, col), xyto1d(row, col));
 
             }
             if ((row + 1 < boolgrid.length) && isOpen(row + 1, col)) {
                 table.union(xyto1d(row, col), xyto1d(row + 1, col));
             }
-
             if (table.connected(topsite, xyto1d(row, col))) {
+
                 isfullgrid[row][col] = true;
+
+            }
+            if (row == boolgrid.length - 1) {
+                table.union(xyto1d(row, col), bottomsite);
             }
 
+
+
         }
+
 
     }
 
@@ -91,10 +97,10 @@ public class Percolation {
         if (row >= boolgrid.length || row < 0 || col >= boolgrid.length || col < 0) {
             throw new IndexOutOfBoundsException();
         }
-        if (!boolgrid[row][col]) {
-            return false;
+        if (boolgrid[row][col]) {
+            return true;
         }
-        return true;
+        return false;
     }
 
     // is the site (row, col) open?
@@ -104,7 +110,7 @@ public class Percolation {
             throw new IndexOutOfBoundsException();
         }
 
-        if (isfullgrid[row][col] && isOpen(row, col)) {
+        if (table.connected(topsite, xyto1d(row, col))) {
             return true;
         }
         return false;
