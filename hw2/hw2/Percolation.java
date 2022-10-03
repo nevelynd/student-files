@@ -56,7 +56,7 @@ public class Percolation {
         if (!isOpen(row, col)) {
             boolgrid[row][col] = true;
             opensites += 1;
-            if (row == 0) {
+            if (row == 0 && !table.connected(topsite, bottomsite)) {
                 isfullgrid[row][col] = true;
                 table.union(topsite, xyto1d(row, col));
 
@@ -75,12 +75,12 @@ public class Percolation {
             if ((row + 1 < boolgrid.length) && isOpen(row + 1, col)) {
                 table.union(xyto1d(row, col), xyto1d(row + 1, col));
             }
-            if (table.connected(topsite, xyto1d(row, col))) {
+            if (table.connected(topsite, xyto1d(row, col)) && !table.connected(topsite, bottomsite)) {
 
                 isfullgrid[row][col] = true;
 
             }
-            if (row == boolgrid.length - 1) {
+            if (row == boolgrid.length - 1 && !table.connected(topsite, bottomsite)) {
                 table.union(xyto1d(row, col), bottomsite);
             }
 
@@ -107,9 +107,6 @@ public class Percolation {
 
         if (row >= boolgrid.length || row < 0 || col >= boolgrid.length || col < 0) {
             throw new IndexOutOfBoundsException();
-        }
-        if (table.connected(topsite, bottomsite)) {
-            return false;
         }
 
         if (table.connected(topsite, xyto1d(row, col))) {
