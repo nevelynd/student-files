@@ -56,7 +56,7 @@ public class Percolation {
         if (!isOpen(row, col)) {
             boolgrid[row][col] = true;
             opensites += 1;
-            if (row == 0 && !table.connected(topsite, bottomsite)) {
+            if (row == 0 ) {
                 isfullgrid[row][col] = true;
                 table.union(topsite, xyto1d(row, col));
 
@@ -80,7 +80,7 @@ public class Percolation {
                 isfullgrid[row][col] = true;
 
             }
-            if (row == boolgrid.length - 1 && !table.connected(topsite, bottomsite)) {
+            if (row == boolgrid.length - 1 && table.connected(topsite, xyto1d(row, col))) {
                 table.union(xyto1d(row, col), bottomsite);
             }
 

@@ -3,7 +3,7 @@ import edu.princeton.cs.algs4.StdStats;
 import edu.princeton.cs.algs4.StdRandom;
 public class PercolationStats {
     private int totalsites;
-    public double[] thresholds;
+    private double[] thresholds;
     private static final double MULT =  1.96;
 
     public PercolationStats(int N, int T, PercolationFactory pf) {
@@ -14,7 +14,7 @@ public class PercolationStats {
         thresholds = new double[T];
         for (int i = 0;  i <  T; i++) {
             Percolation perc = pf.make(N);
-            int count = 0;
+            double count = 0;
             while (!perc.percolates()) {
                 int randomx = StdRandom.uniform(N);
                 int randomy = StdRandom.uniform(N);
@@ -29,7 +29,7 @@ public class PercolationStats {
     }
     // perform T independent experiments on an N-by-N grid
     public double mean() {
-        return StdStats.mean(thresholds) * (1 / (thresholds.length * totalsites));
+        return StdStats.mean(thresholds) * (1 / totalsites);
     }
     // sample mean of percolation threshold
     public double stddev() {
