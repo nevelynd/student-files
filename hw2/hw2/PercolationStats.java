@@ -14,14 +14,15 @@ public class PercolationStats {
         thresholds = new double[T];
         for (int i = 0;  i <  T; i++) {
             Percolation perc = pf.make(N);
-            double count = 0;
+            //double count = 0;
             while (!perc.percolates()) {
-                int randomx = StdRandom.uniform(N);
-                int randomy = StdRandom.uniform(N);
+                int randomx = StdRandom.uniform(0, N);
+                int randomy = StdRandom.uniform(0, N);
                 perc.open(randomx, randomy);
-                count += 1;
+                //count += 1;
             }
-            thresholds[i] = (count / totalsites);
+            double open = (double) perc.numberOfOpenSites();
+            thresholds[i] = (open / totalsites);
 
 
 
@@ -51,7 +52,8 @@ public class PercolationStats {
         }
         num = num / (thresholds.length - 1);
         num = Math.sqrt(num);
-        return StdStats.stddev(thresholds);
+        return num;
+        //return StdStats.stddev(thresholds);
     }
     // sample standard deviation of percolation threshold
     public double confidenceLow() {
