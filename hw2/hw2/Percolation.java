@@ -12,6 +12,7 @@ public class Percolation {
     private int opensites = 0;
 
     private WeightedQuickUnionUF table;
+    private WeightedQuickUnionUF table2;
     public Percolation(int N) {
 
         if (N <= 0) {
@@ -33,6 +34,7 @@ public class Percolation {
         }
 
         table = (WeightedQuickUnionUF) new WeightedQuickUnionUF(N * N + 2);
+        table2 = (WeightedQuickUnionUF) new WeightedQuickUnionUF(N * N + 1);
         topsite = N * N;
         bottomsite = N * N + 1;
 
@@ -56,31 +58,36 @@ public class Percolation {
         if (!isOpen(row, col)) {
             boolgrid[row][col] = true;
             opensites += 1;
-            if (row == 0 ) {
+            if (row == 0) {
                 isfullgrid[row][col] = true;
                 table.union(topsite, xyto1d(row, col));
+                table2.union(topsite, xyto1d(row, col));
 
             }
 
             if ((col + 1 < boolgrid.length) && isOpen(row, col + 1)) {
                 table.union(xyto1d(row, col), xyto1d(row, col + 1));
+                table2.union(xyto1d(row, col), xyto1d(row, col + 1));
             }
             if ((col - 1 >= 0) && isOpen(row, col - 1)) {
                 table.union(xyto1d(row, col), xyto1d(row, col - 1));
+                table2.union(xyto1d(row, col), xyto1d(row, col - 1));
             }
             if ((row - 1 >= 0) && isOpen(row - 1, col)) {
                 table.union(xyto1d(row - 1, col), xyto1d(row, col));
+                table2.union(xyto1d(row - 1, col), xyto1d(row, col));
 
             }
             if ((row + 1 < boolgrid.length) && isOpen(row + 1, col)) {
                 table.union(xyto1d(row, col), xyto1d(row + 1, col));
+                table2.union(xyto1d(row, col), xyto1d(row + 1, col));
             }
             if (table.connected(topsite, xyto1d(row, col)) && !table.connected(topsite, bottomsite)) {
 
                 isfullgrid[row][col] = true;
 
             }
-            if (row == boolgrid.length - 1 && table.connected(topsite, xyto1d(row, col))) {
+            if (row == boolgrid.length - 1) {
                 table.union(xyto1d(row, col), bottomsite);
             }
 
@@ -108,7 +115,10 @@ public class Percolation {
         if (row >= boolgrid.length || row < 0 || col >= boolgrid.length || col < 0) {
             throw new IndexOutOfBoundsException();
         }
+        if (table.connected(topsite, bottomsite)) {
+            return table2.connected(topsite, xyto1d(row, col));
 
+        }
         if (table.connected(topsite, xyto1d(row, col))) {
             return true;
         }

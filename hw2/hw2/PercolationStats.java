@@ -2,7 +2,7 @@ package hw2;
 import edu.princeton.cs.algs4.StdStats;
 import edu.princeton.cs.algs4.StdRandom;
 public class PercolationStats {
-    private int totalsites;
+    private double totalsites;
     private double[] thresholds;
     private static final double MULT =  1.96;
 
@@ -10,7 +10,7 @@ public class PercolationStats {
         if (N <= 0 || T <= 0) {
             throw new IllegalArgumentException();
         }
-        totalsites = N * N;
+        double totalsites = (double) N * N;
         thresholds = new double[T];
         for (int i = 0;  i <  T; i++) {
             Percolation perc = pf.make(N);
@@ -21,7 +21,7 @@ public class PercolationStats {
                 perc.open(randomx, randomy);
                 count += 1;
             }
-            thresholds[i] = (count);
+            thresholds[i] = (count / totalsites );
 
 
 
@@ -29,7 +29,7 @@ public class PercolationStats {
     }
     // perform T independent experiments on an N-by-N grid
     public double mean() {
-        return StdStats.mean(thresholds) * (1 / totalsites);
+        return StdStats.mean(thresholds);
     }
     // sample mean of percolation threshold
     public double stddev() {
