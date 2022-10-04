@@ -18,7 +18,7 @@ public class InteractivePercolationVisualizer {
 
     public static void main(String[] args) {
         // N-by-N percolation system (read from command-line, default = 10)
-        int N = 10;
+        int N = 4;
         if (args.length == 1) {
             N = Integer.parseInt(args[0]);
         }
@@ -52,6 +52,8 @@ public class InteractivePercolationVisualizer {
                     }
 
                     perc.open(i, j);
+                    //StdOut.println(perc.isfullgrid[i][j]);
+                    //StdOut.println("method" + perc.isFull(i,j));
 
                 }
 
