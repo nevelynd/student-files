@@ -10,7 +10,7 @@ public class PercolationStats {
         if (N <= 0 || T <= 0) {
             throw new IllegalArgumentException();
         }
-        double totalsites = (double) N * N;
+        totalsites = (double) N * N;
         thresholds = new double[T];
         for (int i = 0;  i <  T; i++) {
             Percolation perc = pf.make(N);
@@ -21,7 +21,7 @@ public class PercolationStats {
                 perc.open(randomx, randomy);
                 count += 1;
             }
-            thresholds[i] = (count / totalsites );
+            thresholds[i] = (count / totalsites);
 
 
 
@@ -29,10 +29,28 @@ public class PercolationStats {
     }
     // perform T independent experiments on an N-by-N grid
     public double mean() {
-        return StdStats.mean(thresholds);
+        double ans = 0.0;
+        for (int i = 0; i < thresholds.length; i++) {
+            ans += thresholds[i];
+        }
+        return (ans / thresholds.length);
+        //return StdStats.mean(thresholds);
     }
     // sample mean of percolation threshold
     public double stddev() {
+        double num = 0.0;
+        double[] a = new double[thresholds.length];
+        for (int i = 0; i < thresholds.length; i++) {
+            num = thresholds[i] - mean();
+            num = num * num;
+            a[i] = num;
+        }
+        num = 0.0;
+        for (int i = 0; i < thresholds.length; i++) {
+            num += a[i];
+        }
+        num = num / (thresholds.length - 1);
+        num = Math.sqrt(num);
         return StdStats.stddev(thresholds);
     }
     // sample standard deviation of percolation threshold
