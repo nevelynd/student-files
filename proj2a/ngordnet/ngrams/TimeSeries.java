@@ -8,14 +8,18 @@ import java.util.*;
  */
 public class TimeSeries extends TreeMap<Integer, Double> {
     /** Constructs a new empty TimeSeries. */
+    private TimeSeries ts;
     public TimeSeries() {
         super();
+        ts = new TimeSeries();
     }
 
     /** Creates a copy of TS, but only between STARTYEAR and ENDYEAR,
      *  inclusive of both end points. */
     public TimeSeries(TimeSeries ts, int startYear, int endYear) {
         super();
+        TimeSeries copy = ts;
+
     }
 
     /** Returns all years for this TimeSeries (in any order). */
