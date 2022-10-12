@@ -46,9 +46,10 @@ public class NGramMap {
         }
         File file2 = new File(countsFilename);
         In b = new In(file2);
-        String ss = b.readLine();
+        String ss;
 
         while (b.hasNextLine()) {
+            ss = b.readLine();
             String[] sarray2 = ss.split(",", 0);
             int key2 = Integer.parseInt(sarray2[0]);
             double val2 = Double.parseDouble(sarray2[1]);
@@ -57,9 +58,10 @@ public class NGramMap {
             } else {
                 counts.put(key2, counts.get(key2) + val2);
             }
-            ss = b.readLine();
-        }
 
+        }
+        //System.out.println("counts");
+        //System.out.println(counts);
     }
 
     /** Provides the history of WORD. The returned TimeSeries should be a copy,
@@ -95,7 +97,8 @@ public class NGramMap {
     /** Returns a defensive copy of the total number of words recorded per year in all volumes. */
     public TimeSeries totalCountHistory() {
         TimeSeries t = new TimeSeries();
-        for (int x : counts.keySet()) {
+
+        for (int x: counts.keySet()) {
             int key2 = (x);
             double val2 = (counts.get(x));
             t.put(key2, val2);
@@ -109,6 +112,7 @@ public class NGramMap {
      *  all words recorded in that year. */
     public TimeSeries weightHistory(String word) {
         TimeSeries res = countHistory(word);
+
         for (int year: res.keySet()) {
             if (counts.containsKey(year) && counts.get(year) != null && counts.get(year) != 0.0) {
                 double newval = (double) res.get(year) / counts.get(year);

@@ -11,9 +11,13 @@ import java.util.List;
  *  @author Josh Hug
  */
 public class TestNGramMap {
-    @Test
+
+
+
+        @Test
     public void testCountHistory() {
         NGramMap ngm = new NGramMap("./data/ngrams/very_short.csv", "./data/ngrams/total_counts.csv");
+
 
         List<Integer> expectedYears = new ArrayList<>
                 (Arrays.asList(2005, 2006, 2007, 2008));
@@ -70,6 +74,13 @@ public class TestNGramMap {
 
         double expectedFishPlusDogWeight1865 = (136497.0 + 75819.0) / 2563919231.0;
         assertEquals(expectedFishPlusDogWeight1865, fishPlusDogWeight.get(1865), 1E-10);
+
+
+
+
+
+
+
     }
 
 }  
