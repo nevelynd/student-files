@@ -14,6 +14,7 @@ public class TestNGramMap {
     @Test
     public void testCountHistory() {
         NGramMap ngm = new NGramMap("./data/ngrams/very_short.csv", "./data/ngrams/total_counts.csv");
+
         List<Integer> expectedYears = new ArrayList<>
                 (Arrays.asList(2005, 2006, 2007, 2008));
         List<Double> expectedCounts = new ArrayList<>
@@ -38,6 +39,7 @@ public class TestNGramMap {
         for (int i = 0; i < expectedCounts.size(); i += 1) {
             assertEquals(expectedCounts.get(i), request2006to2007.data().get(i), 1E-10);
         }
+
     }
 
     @Test
