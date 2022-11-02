@@ -12,7 +12,7 @@ public class HyponymsHandler extends NgordnetQueryHandler {
     private NGramMap ngm;
 
     private HashMap<Double, String> wordtopop;
-    ArrayList sums = new ArrayList();
+    ArrayList<Double> sums = new ArrayList();
 
     public HyponymsHandler(WordNet wninput, NGramMap ngmap) {
         wn = wninput;
@@ -25,7 +25,7 @@ public class HyponymsHandler extends NgordnetQueryHandler {
         int startYear = q.startYear();
         int endYear = q.endYear();
         int k = q.k();
-        ArrayList result = new ArrayList();
+        HashSet<String> result = new HashSet<>();
         if (words.size() == 0) {
             return result.toString();
         }
@@ -57,7 +57,7 @@ public class HyponymsHandler extends NgordnetQueryHandler {
             for (String word : firstsarray) {
                 TimeSeries b = ngm.weightHistory(word, startYear, endYear);
                 double sum = 0;
-                if (b != null) {
+                if (b != null && b.size() != 0) {
                     for (double val : b.values()) {
                         sum += val;
                     }
@@ -69,7 +69,7 @@ public class HyponymsHandler extends NgordnetQueryHandler {
             int n = 0;
             for (int i = 0; i < sums.size(); i++) {
                 String c = wordtopop.get(sums.get(i));
-                if (c != null && !result.contains(c)) {
+                if (c != null && !result.contains(c) && sums.get(i) != 0.0) {
                     n += 1;
                     result.add(c);
                 }
@@ -77,8 +77,12 @@ public class HyponymsHandler extends NgordnetQueryHandler {
                     break;
                 }
             }
-            Collections.sort(result);
-            return result.toString();
+            ArrayList newresult = new ArrayList();
+            for (String wordss  : result) {
+                newresult.add(wordss);
+            }
+            Collections.sort(newresult);
+            return newresult.toString();
         }
         return firstsarray.toString();
     }

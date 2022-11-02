@@ -19,9 +19,16 @@ public class TestOneWordNonZeroKHyponyms {
     public static final String TOTAL_COUNTS_FILE = "data/ngrams/total_counts.csv";
     public static final String SYNSET_FILE = "data/wordnet/synsets.txt";
     public static final String HYPONYM_FILE = "data/wordnet/hyponyms.txt";
+    public static final String SYNSET_FILE2 = "data/wordnet/synsets1000-subgraph.txt";
+    public static final String HYPONYM_FILE2 = "data/wordnet/hyponyms1000-subgraph.txt";
+
 
     private static final NgordnetQueryHandler studentHandler = AutograderBuddy.getHyponymHandler(
             WORDS_FILE, TOTAL_COUNTS_FILE, SYNSET_FILE, HYPONYM_FILE);
+
+    private static final NgordnetQueryHandler studentHandler2 = AutograderBuddy.getHyponymHandler(
+            WORDS_FILE, TOTAL_COUNTS_FILE, SYNSET_FILE2, HYPONYM_FILE2);
+
 
     @Before
     public void warnUser() {
@@ -42,6 +49,22 @@ public class TestOneWordNonZeroKHyponyms {
         assertEquals(expected, actual);
     }
 
+
+
+    @Test
+    public void testDashK0in20072() {
+
+        List<String> words = List.of("acyl");
+
+        NgordnetQuery nq = new NgordnetQuery(words, 0, 0, 0);
+        String actual = studentHandler2.handle(nq);
+
+        String expected = "[acetyl, acetyl_group, acetyl_radical, acyl, acyl_group, ethanoyl_group, ethanoyl_radical, foryml]";
+        assertEquals(expected, actual);
+    }
+
+
+
     /** Tests finding top hyponym of dash (k = 1) for startYear = 2007, endYear = 2007.
      *  The result should just be ["style"] since potato is the most popular hyponym of dash in 2007 */
     @Test
@@ -53,6 +76,18 @@ public class TestOneWordNonZeroKHyponyms {
 
         // The most popular dash in 2007 was style.
         String expected = "[style]";
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testDashK1inag() {
+        List<String> words = List.of("dust");
+
+        NgordnetQuery nq = new NgordnetQuery(words, 1740, 2019, 7);
+        String actual = studentHandler.handle(nq);
+
+
+        String expected = "[debris, dust, junk, slack]";
         assertEquals(expected, actual);
     }
 

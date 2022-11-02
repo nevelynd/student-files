@@ -87,7 +87,7 @@ public class WordNet {
     public String findchildren(String word) {
         boolean[] marked = new boolean[idtoword.size()];
         Queue<String> fringe = new Queue<String>();
-        ArrayList result = new ArrayList();
+        HashSet<String> result = new HashSet<>();
 
 
         if (wordtoid.get(word) == null) {
@@ -124,10 +124,14 @@ public class WordNet {
                 }
             }
         }
-        Collections.sort(result);
+        ArrayList newresult = new ArrayList();
+        for (String wordss  : result) {
+            newresult.add(wordss);
+        }
+        Collections.sort(newresult);
 
 
-        return result.toString();
+        return newresult.toString();
 
     }
 
