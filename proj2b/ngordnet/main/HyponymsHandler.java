@@ -25,8 +25,10 @@ public class HyponymsHandler extends NgordnetQueryHandler {
         int startYear = q.startYear();
         int endYear = q.endYear();
         int k = q.k();
-        LinkedList result = new LinkedList();
-
+        ArrayList result = new ArrayList();
+        if (words.size() == 0) {
+            return result.toString();
+        }
 
 
 
@@ -56,7 +58,6 @@ public class HyponymsHandler extends NgordnetQueryHandler {
             }
 
         }
-        System.out.println(firstsarray);
         if (k != 0) {
             wordtopop = new HashMap<Double, String>();
             for (String word : firstsarray) {
@@ -66,9 +67,10 @@ public class HyponymsHandler extends NgordnetQueryHandler {
                     for (double val : b.values()) {
                         sum += val;
                     }
+                    wordtopop.put(sum, word);
+                    sums.add(sum);
                 }
-                wordtopop.put(sum, word);
-                sums.add(sum);
+
             }
             Collections.sort(sums, Collections.reverseOrder());
             int n = 0;
