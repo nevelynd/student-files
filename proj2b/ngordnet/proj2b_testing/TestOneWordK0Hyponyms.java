@@ -17,6 +17,9 @@ public class TestOneWordK0Hyponyms {
     public static final String SMALL_SYNSET_FILE = "data/wordnet/synsets16.txt";
     public static final String SMALL_HYPONYM_FILE = "data/wordnet/hyponyms16.txt";
 
+    public static final String BIG_SYNSET_FILE = "data/wordnet/synsets.txt";
+    public static final String BIG_HYPONYM_FILE = "data/wordnet/hyponyms.txt";
+
     @Test
     public void testActK0() {
 
@@ -27,6 +30,40 @@ public class TestOneWordK0Hyponyms {
         NgordnetQuery nq = new NgordnetQuery(words, 0, 0, 0);
         String actual = studentHandler.handle(nq);
         String expected = "[act, action, change, demotion, human_action, human_activity, variation]";
+
+
+
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testActK04() {
+
+        NgordnetQueryHandler studentHandler = AutograderBuddy.getHyponymHandler(
+                WORDS_FILE, TOTAL_COUNTS_FILE, BIG_SYNSET_FILE, BIG_HYPONYM_FILE);
+        List<String> words = List.of("ASCII_text_file");
+
+        NgordnetQuery nq = new NgordnetQuery(words, 0, 0, 0);
+        String actual = studentHandler.handle(nq);
+        String expected = "[ASCII_text_file, source_code]";
+
+
+
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testActK05() {
+
+        NgordnetQueryHandler studentHandler = AutograderBuddy.getHyponymHandler(
+                WORDS_FILE, TOTAL_COUNTS_FILE, BIG_SYNSET_FILE, BIG_HYPONYM_FILE);
+        List<String> words = List.of("ASCII_character");
+
+        NgordnetQuery nq = new NgordnetQuery(words, 0, 0, 0);
+        String actual = studentHandler.handle(nq);
+        String expected = "[ASCII_character, ASCII_control_character, backspace_character, control_character]";
 
 
 
