@@ -83,52 +83,52 @@ public class WordNet {
     }
 
 
-        public String FindChildren(String word) {
-            boolean[] marked = new boolean[idtoword.size()];
-            Queue<String> fringe = new Queue<String>();
-            LinkedList result = new LinkedList();
+    public String findchildren(String word) {
+        boolean[] marked = new boolean[idtoword.size()];
+        Queue<String> fringe = new Queue<String>();
+        LinkedList result = new LinkedList();
 
 
-            if (wordtoid.get(word) == null) {
-                return result.toString();
-            }
-
-            if (wordtoid.get(word)!= null){
-                for (String id : wordtoid.get(word)) {
-                    fringe.enqueue(id);
-                    //going through each id of the word's id
-
-
-                    while (!fringe.isEmpty()) {
-                        String v = fringe.dequeue();
-                        int intid3 = Integer.parseInt(v);
-                        marked[intid3] = true;
-
-
-                        for (String actualwords : idtoword.get(v)) {
-                            if (!result.contains(actualwords))  {
-                                result.add(actualwords);
-
-                            }
-                        }
-                        //going through each id connected to current id/front fringe item
-                        if (idtoid.get(v)!= null) {
-                            for (String w : idtoid.get(v)) {
-                                int intid = Integer.parseInt(w);
-                                if (!marked[intid]) {
-                                    fringe.enqueue(w);
-                                    }
-                                }
-                            }
-                        }
-                        }
-                }
-            Collections.sort(result);
-
-
+        if (wordtoid.get(word) == null) {
             return result.toString();
-
         }
+
+        if (wordtoid.get(word) != null) {
+            for (String id : wordtoid.get(word)) {
+                fringe.enqueue(id);
+                //going through each id of the word's id
+
+
+                while (!fringe.isEmpty()) {
+                    String v = fringe.dequeue();
+                    int intid3 = Integer.parseInt(v);
+                    marked[intid3] = true;
+
+
+                    for (String actualwords : idtoword.get(v)) {
+                        if (!result.contains(actualwords))  {
+                            result.add(actualwords);
+
+                        }
+                    }
+                    //going through each id connected to current id/front fringe item
+                    if (idtoid.get(v) != null) {
+                        for (String w : idtoid.get(v)) {
+                            int intid = Integer.parseInt(w);
+                            if (!marked[intid]) {
+                                fringe.enqueue(w);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        Collections.sort(result);
+
+
+        return result.toString();
+
+    }
 
 
 
