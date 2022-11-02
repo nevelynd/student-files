@@ -9,26 +9,21 @@ import java.util.HashSet;
 
 public class Graph<T> {
     private int vertices;
+    private int V;
     private List<Edge> edges;
-    private List<List<Node>> adj = new ArrayList<>();
+    //private List<T>[] adj;
+    private HashMap<Integer, HashSet<T>> adj;
 
-
-
-    private class Node {
-        private T word;
-        public Node(T word) {
-            this.word = word;
+    public Graph (int V, HashMap map) {
+        this.V = V;
+        //adj = (List<T>[]) new ArrayList[V];
+        adj = new HashMap<Integer, HashSet<T>>();
+        for (int v = 0; v < V; v++) {
+            adj.put(v, new HashSet<T>());
         }
     }
 
 
-    public Graph (List<Edge> edges) {
-        this.edges = edges;
-        for (int i = 0; i < edges.size(); i++) {
-            adj.add(i, new ArrayList<>());
-        }
-
-    }
 
     public class Edge {
         private T start;
@@ -40,12 +35,16 @@ public class Graph<T> {
         }
     }
     public void addEdge(T v, T w) {
-        for (Edge edge: edges) {
-        adj.get(edge.start).add(new Node(edge.end));
+        if (!adj.get(v).contains(w)) {
+            Edge newedge = new Edge(v,w);
+            adj.get(v).add(w);
+            edges.add(newedge);
         }
+
     }
+
     public Iterable<T> adj(int v) {
-        return adj[v];
+        return adj.get(v);
     }
     public int V() {
         return V;

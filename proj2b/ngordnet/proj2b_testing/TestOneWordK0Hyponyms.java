@@ -19,6 +19,7 @@ public class TestOneWordK0Hyponyms {
 
     @Test
     public void testActK0() {
+
         NgordnetQueryHandler studentHandler = AutograderBuddy.getHyponymHandler(
                 WORDS_FILE, TOTAL_COUNTS_FILE, SMALL_SYNSET_FILE, SMALL_HYPONYM_FILE);
         List<String> words = List.of("act");
@@ -26,6 +27,47 @@ public class TestOneWordK0Hyponyms {
         NgordnetQuery nq = new NgordnetQuery(words, 0, 0, 0);
         String actual = studentHandler.handle(nq);
         String expected = "[act, action, change, demotion, human_action, human_activity, variation]";
+
+
+
+
+        assertEquals(expected, actual);
+    }
+
+
+
+
+    @Test
+    public void testActK02() {
+
+        NgordnetQueryHandler studentHandler = AutograderBuddy.getHyponymHandler(
+                WORDS_FILE, TOTAL_COUNTS_FILE, SMALL_SYNSET_FILE, SMALL_HYPONYM_FILE);
+        List<String> words = List.of("change");
+
+        NgordnetQuery nq = new NgordnetQuery(words, 0, 0, 0);
+        String actual = studentHandler.handle(nq);
+        String expected = "[alteration, change, demotion, increase, jump, leap, modification, saltation, transition, variation]";
+
+
+
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testActK03() {
+
+        NgordnetQueryHandler studentHandler = AutograderBuddy.getHyponymHandler(
+                WORDS_FILE, TOTAL_COUNTS_FILE, SMALL_SYNSET_FILE, SMALL_HYPONYM_FILE);
+        List<String> words = List.of("occurrence");
+
+        NgordnetQuery nq = new NgordnetQuery(words, 0, 0, 0);
+        String actual = studentHandler.handle(nq);
+        String expected = "[adjustment, alteration, change, conversion, happening, increase, jump, leap, modification, mutation, natural_event, occurrence, occurrent, saltation, transition]";
+
+
+
+
         assertEquals(expected, actual);
     }
 }

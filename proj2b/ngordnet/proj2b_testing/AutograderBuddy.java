@@ -1,6 +1,11 @@
 package ngordnet.proj2b_testing;
 
 import ngordnet.hugbrowsermagic.NgordnetQueryHandler;
+import ngordnet.main.HistoryHandler;
+import ngordnet.main.HistoryTextHandler;
+import ngordnet.main.HyponymsHandler;
+import ngordnet.main.WordNet;
+import ngordnet.ngrams.NGramMap;
 
 
 public class AutograderBuddy {
@@ -8,7 +13,9 @@ public class AutograderBuddy {
     public static NgordnetQueryHandler getHyponymHandler(
             String wordFile, String countFile,
             String synsetFile, String hyponymFile) {
+        NGramMap ngm = new NGramMap(wordFile, countFile);
+        WordNet wn = new WordNet(synsetFile, hyponymFile);
 
-        return null;
+        return new HyponymsHandler(wn, ngm);
     }
 }
