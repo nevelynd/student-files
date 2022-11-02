@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.Collections;
 import java.util.LinkedList;
 import edu.princeton.cs.algs4.Queue;
+import java.util.ArrayList;
 
 
 
@@ -86,7 +87,7 @@ public class WordNet {
     public String findchildren(String word) {
         boolean[] marked = new boolean[idtoword.size()];
         Queue<String> fringe = new Queue<String>();
-        LinkedList result = new LinkedList();
+        ArrayList result = new ArrayList();
 
 
         if (wordtoid.get(word) == null) {

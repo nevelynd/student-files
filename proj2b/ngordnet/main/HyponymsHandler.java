@@ -12,7 +12,7 @@ public class HyponymsHandler extends NgordnetQueryHandler {
     private NGramMap ngm;
 
     private HashMap<Double, String> wordtopop;
-    LinkedList sums = new LinkedList();
+    ArrayList sums = new ArrayList();
 
     public HyponymsHandler(WordNet wninput, NGramMap ngmap) {
         wn = wninput;
