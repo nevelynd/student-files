@@ -57,7 +57,17 @@ public class TestMultiWordNonZeroKHyponyms {
         assertEquals(expected, actual);
     }
 
+    @Test
+    public void testOccurrenEceAndChangjjeK0() {
+        NgordnetQueryHandler studentHandler = AutograderBuddy.getHyponymHandler(
+                WORDS_FILE, TOTAL_COUNTS_FILE, SYNSET_FILE, HYPONYM_FILE);
+        List<String> words = List.of("temporary", "flies");
 
+        NgordnetQuery nq = new NgordnetQuery(words, 0, 0, 0);
+        String actual = studentHandler.handle(nq);
+        String expected = "[]";
+        assertEquals(expected, actual);
+    }
 
     @Test
     public void testChildAnimalK1in2007() {
