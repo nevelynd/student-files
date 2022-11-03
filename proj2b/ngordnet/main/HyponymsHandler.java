@@ -14,6 +14,7 @@ public class HyponymsHandler extends NgordnetQueryHandler {
     private HashMap<Double, String> wordtopop;
     ArrayList<Double> sums = new ArrayList();
 
+
     public HyponymsHandler(WordNet wninput, NGramMap ngmap) {
         wn = wninput;
         ngm = ngmap;
@@ -34,7 +35,7 @@ public class HyponymsHandler extends NgordnetQueryHandler {
         response = wn.findchildren(first);
         String firstsplitstring = response.substring(1, response.length() - 1);
         List<String> firstsarray = new ArrayList<String>(Arrays.asList(firstsplitstring.split(", ", 0)));
-        if (firstsarray.size() == 0) {
+        if (firstsarray.size() <= 1) {
             return result.toString();
         }
         for (int i = 1; i < words.size(); i++)  {
@@ -52,12 +53,12 @@ public class HyponymsHandler extends NgordnetQueryHandler {
                 }
             }
         }
-        if (k != 0) {
+        if (k != 0 && firstsarray.size() > 1) {
             wordtopop = new HashMap<Double, String>();
             for (String word : firstsarray) {
-                TimeSeries b = ngm.countHistory(word, startYear, endYear);
-                double sum = 0;
-                if (b != null && b.size() != 0) {
+                TimeSeries b = ngm.weightHistory(word, startYear, endYear);
+                if (!b.isEmpty() && b.size() != 0) {
+                    double sum = 0;
                     for (double val : b.values()) {
                         sum += val;
                     }

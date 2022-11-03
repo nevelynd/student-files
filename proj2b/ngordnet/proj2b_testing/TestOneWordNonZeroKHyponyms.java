@@ -79,6 +79,20 @@ public class TestOneWordNonZeroKHyponyms {
         assertEquals(expected, actual);
     }
 
+
+
+
+    @Test
+    public void testDashK1in20072() {
+        List<String> words = List.of("koij");
+
+        NgordnetQuery nq = new NgordnetQuery(words, 2007, 2007, 1);
+        String actual = studentHandler.handle(nq);
+
+        String expected = "[]";
+        assertEquals(expected, actual);
+    }
+
     @Test
     public void testDashK1inag() {
         List<String> words = List.of("dust");

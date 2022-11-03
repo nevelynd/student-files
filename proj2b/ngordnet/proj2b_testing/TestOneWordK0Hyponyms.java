@@ -54,6 +54,8 @@ public class TestOneWordK0Hyponyms {
         assertEquals(expected, actual);
     }
 
+
+
     @Test
     public void testActK05() {
 
@@ -72,7 +74,22 @@ public class TestOneWordK0Hyponyms {
     }
 
 
+    @Test
+    public void testActK025() {
 
+        NgordnetQueryHandler studentHandler = AutograderBuddy.getHyponymHandler(
+                WORDS_FILE, TOTAL_COUNTS_FILE, BIG_SYNSET_FILE, BIG_HYPONYM_FILE);
+        List<String> words = List.of("wefewer");
+
+        NgordnetQuery nq = new NgordnetQuery(words, 0, 0, 0);
+        String actual = studentHandler.handle(nq);
+        String expected = "[]";
+
+
+
+
+        assertEquals(expected, actual);
+    }
 
     @Test
     public void testActK02() {
