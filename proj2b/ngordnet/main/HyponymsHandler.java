@@ -55,7 +55,7 @@ public class HyponymsHandler extends NgordnetQueryHandler {
         if (k != 0) {
             wordtopop = new HashMap<Double, String>();
             for (String word : firstsarray) {
-                TimeSeries b = ngm.weightHistory(word, startYear, endYear);
+                TimeSeries b = ngm.countHistory(word, startYear, endYear);
                 double sum = 0;
                 if (b != null && b.size() != 0) {
                     for (double val : b.values()) {

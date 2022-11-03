@@ -1,8 +1,7 @@
 package ngordnet.proj2b_testing;
 
 import ngordnet.hugbrowsermagic.NgordnetQueryHandler;
-import ngordnet.main.HistoryHandler;
-import ngordnet.main.HistoryTextHandler;
+
 import ngordnet.main.HyponymsHandler;
 import ngordnet.main.WordNet;
 import ngordnet.ngrams.NGramMap;
