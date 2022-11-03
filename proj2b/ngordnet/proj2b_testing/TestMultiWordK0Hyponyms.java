@@ -32,6 +32,19 @@ public class TestMultiWordK0Hyponyms {
         assertEquals(expected, actual);
     }
 
+
+    @Test
+    public void testOccurrenceAndChangeKj0() {
+        NgordnetQueryHandler studentHandler = AutograderBuddy.getHyponymHandler(
+                WORDS_FILE, TOTAL_COUNTS_FILE, SMALL_SYNSET_FILE, SMALL_HYPONYM_FILE);
+        List<String> words = List.of("convoy", "composers", "castle", "solids", "submit", "wrongful", "saturated", "involve", "girl", "violating", "interviewed", "nasal", "tables", "muscles", "load", "disastrous", "ask", "bump", "categories", "reimbursement", "pervasive", "cynical");
+
+        NgordnetQuery nq = new NgordnetQuery(words, 0, 0, 0);
+        String actual = studentHandler.handle(nq);
+        String expected = "[]";
+        assertEquals(expected, actual);
+    }
+
     /** This is an example from the spec on the full hyponyms and synsets file.*/
     @Test
     public void testBowlGalleryK0() {

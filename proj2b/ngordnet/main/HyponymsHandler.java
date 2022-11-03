@@ -35,10 +35,6 @@ public class HyponymsHandler extends NgordnetQueryHandler {
         response = wn.findchildren(first);
         String firstsplitstring = response.substring(1, response.length() - 1);
         List<String> firstsarray = new ArrayList<String>(Arrays.asList(firstsplitstring.split(", ", 0)));
-        if (firstsarray.size() <= 1) {
-            return firstsarray.toString();
-        }
-
         for (int i = 1; i < words.size(); i++)  {
             String compare = "";
             compare = wn.findchildren(words.get(i));

@@ -43,6 +43,22 @@ public class TestMultiWordNonZeroKHyponyms {
     }
 
     /** Tests finding all hyponyms of child, animal (k = 1) for startYear = 2007, endYear = 2007. */
+
+
+    @Test
+    public void testChildAnimalK0in20nj07() {
+
+        List<String> words = List.of("pope", "parking", "moderately", "forming", "prosecution", "assays", "echo", "unfolded", "fit", "critic", "coughing", "differently", "accusation", "rabbit", "dissolved", "arrangements", "shorter", "conclusive", "vis", "margin", "then", "exerted", "packs", "ihm", "symptom", "nationality", "style", "excessive", "goin", "annoying", "victorious", "wind", "paragraph");
+
+        NgordnetQuery nq = new NgordnetQuery(words, 1470, 2019, 7);
+        String actual = studentHandler.handle(nq);
+
+        String expected = "[parking]";
+        assertEquals(expected, actual);
+    }
+
+
+
     @Test
     public void testChildAnimalK1in2007() {
 
