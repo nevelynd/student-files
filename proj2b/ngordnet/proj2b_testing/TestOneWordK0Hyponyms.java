@@ -73,7 +73,22 @@ public class TestOneWordK0Hyponyms {
         assertEquals(expected, actual);
     }
 
+    @Test
+    public void testActK0m5() {
 
+        NgordnetQueryHandler studentHandler = AutograderBuddy.getHyponymHandler(
+                WORDS_FILE, TOTAL_COUNTS_FILE, BIG_SYNSET_FILE, BIG_HYPONYM_FILE);
+        List<String> words = List.of("euro");
+
+        NgordnetQuery nq = new NgordnetQuery(words, 1470, 2019, 0);
+        String actual = studentHandler.handle(nq);
+        String expected = "[euro]";
+
+
+
+
+        assertEquals(expected, actual);
+    }
     @Test
     public void testActK025() {
 

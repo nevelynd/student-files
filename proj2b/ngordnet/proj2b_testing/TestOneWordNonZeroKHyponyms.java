@@ -79,7 +79,29 @@ public class TestOneWordNonZeroKHyponyms {
         assertEquals(expected, actual);
     }
 
+    @Test
+    public void testDashK1in2007af() {
+        List<String> words = List.of("grass");
 
+        NgordnetQuery nq = new NgordnetQuery(words, 1470, 2019, 7);
+        String actual = studentHandler.handle(nq);
+
+        // The most popular dash in 2007 was style.
+        String expected = "[bent, corn, grain, grass, rice, smoke, wheat]";
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testDashK1in2007afh() {
+        List<String> words = List.of("bound");
+
+        NgordnetQuery nq = new NgordnetQuery(words, 1470, 2019, 2);
+        String actual = studentHandler.handle(nq);
+
+        // The most popular dash in 2007 was style.
+        String expected = "[end, side]";
+        assertEquals(expected, actual);
+    }
 
 
     @Test

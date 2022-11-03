@@ -36,8 +36,9 @@ public class HyponymsHandler extends NgordnetQueryHandler {
         String firstsplitstring = response.substring(1, response.length() - 1);
         List<String> firstsarray = new ArrayList<String>(Arrays.asList(firstsplitstring.split(", ", 0)));
         if (firstsarray.size() <= 1) {
-            return result.toString();
+            return firstsarray.toString();
         }
+
         for (int i = 1; i < words.size(); i++)  {
             String compare = "";
             compare = wn.findchildren(words.get(i));
@@ -48,15 +49,15 @@ public class HyponymsHandler extends NgordnetQueryHandler {
                 if (!sarraycompare.contains(check)) {
                     iter.remove();
                 }
-                if (sarraycompare.size() == 0) {
-                    return result.toString();
+                if (sarraycompare.size() <= 1) {
+                    return sarraycompare.toString();
                 }
             }
         }
         if (k != 0 && firstsarray.size() > 1) {
             wordtopop = new HashMap<Double, String>();
             for (String word : firstsarray) {
-                TimeSeries b = ngm.weightHistory(word, startYear, endYear);
+                TimeSeries b = ngm.countHistory(word, startYear, endYear);
                 if (!b.isEmpty() && b.size() != 0) {
                     double sum = 0;
                     for (double val : b.values()) {
